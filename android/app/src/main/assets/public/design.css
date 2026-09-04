@@ -1,0 +1,98 @@
+﻿/* =========================================================
+   GrainControl DZ - Realistic Grain Warehouse Background
+   ========================================================= */
+
+body{
+  position:relative;
+  isolation:isolate;
+
+  background:#e9eef1;
+}
+
+body::after{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  z-index:-2;
+  pointer-events:none;
+
+  background-image:
+    linear-gradient(
+      rgba(245,248,249,.18),
+      rgba(236,241,243,.12)
+    ),
+    url("assets/grain-warehouse-bg.jpg");
+
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  opacity:1;
+
+  filter:saturate(.95) contrast(1.02);
+}
+
+body::before{
+  content:"";
+
+  position:fixed;
+  inset:0;
+
+  z-index:-1;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      circle at 82% 12%,
+      rgba(201,162,39,.10),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(248,250,251,.25),
+      rgba(238,242,244,.18)
+    );
+
+  backdrop-filter:blur(1px);
+  -webkit-backdrop-filter:blur(1px);
+}
+
+.wrap{
+  position:relative;
+  z-index:1;
+}
+
+.panel,
+.card,
+.nav{
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+
+  background:rgba(255,255,255,.68);
+}
+
+@media(max-width:800px){
+
+  body::after{
+    background-position:center;
+    opacity:.16;
+  }
+
+  body::before{
+    background:
+      linear-gradient(
+        135deg,
+        rgba(248,250,251,.93),
+        rgba(238,242,244,.88)
+      );
+  }
+}
+
+
+
+
+
+
+

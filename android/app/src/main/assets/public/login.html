@@ -1,0 +1,441 @@
+<!doctype html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GrainControl DZ - تسجيل الدخول</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+min-height:100vh;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#081b2a;
+color:#17212b;
+}
+
+.background{
+position:fixed;
+inset:0;
+overflow:hidden;
+background:
+radial-gradient(circle at 20% 20%,#d5a92822,transparent 30%),
+radial-gradient(circle at 80% 80%,#d5a92818,transparent 35%),
+linear-gradient(135deg,#061522,#0b2639,#071722);
+}
+
+.grain{
+position:absolute;
+font-size:42px;
+opacity:.12;
+animation:float 14s linear infinite;
+}
+
+.g1{left:8%;top:100%;animation-delay:0s}
+.g2{left:28%;top:110%;animation-delay:3s}
+.g3{left:52%;top:105%;animation-delay:6s}
+.g4{left:76%;top:115%;animation-delay:2s}
+.g5{left:91%;top:100%;animation-delay:8s}
+
+@keyframes float{
+0%{transform:translateY(0) rotate(0deg)}
+100%{transform:translateY(-125vh) rotate(360deg)}
+}
+
+.login{
+position:relative;
+z-index:2;
+width:min(440px,92%);
+padding:34px;
+border-radius:24px;
+background:#ffffff;
+box-shadow:0 25px 70px #0008;
+border-top:5px solid #d5a928;
+animation:enter .8s ease;
+}
+
+@keyframes enter{
+from{
+opacity:0;
+transform:translateY(40px) scale(.94)
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1)
+}
+}
+
+.logo{
+text-align:center;
+font-size:58px;
+margin-bottom:5px;
+animation:logo 3s ease-in-out infinite;
+}
+
+@keyframes logo{
+50%{transform:translateY(-6px)}
+}
+
+h1{
+margin:5px 0;
+text-align:center;
+font-size:28px;
+color:#0b2639;
+}
+
+.subtitle{
+text-align:center;
+color:#66727c;
+font-size:14px;
+margin-bottom:25px;
+}
+
+.line{
+width:65px;
+height:3px;
+background:#d5a928;
+margin:12px auto 22px;
+border-radius:10px;
+}
+
+label{
+display:block;
+font-weight:bold;
+font-size:13px;
+margin:13px 0 6px;
+color:#243746;
+}
+
+input,select{
+width:100%;
+padding:13px;
+border:1px solid #ccd4da;
+border-radius:10px;
+font:inherit;
+background:#fafcfd;
+outline:none;
+transition:.25s;
+}
+
+input:focus,select:focus{
+border-color:#d5a928;
+box-shadow:0 0 0 3px #d5a92825;
+background:white;
+}
+
+button{
+width:100%;
+border:0;
+border-radius:11px;
+padding:14px;
+margin-top:22px;
+font:inherit;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+color:white;
+background:#0b2639;
+transition:.25s;
+}
+
+button:hover{
+background:#123b55;
+transform:translateY(-2px);
+box-shadow:0 9px 22px #0b263955;
+}
+
+button:active{
+transform:scale(.98);
+}
+
+.error{
+min-height:20px;
+margin-top:12px;
+text-align:center;
+font-size:13px;
+font-weight:bold;
+}
+
+.footer{
+border-top:1px solid #e6e9eb;
+margin-top:22px;
+padding-top:15px;
+text-align:center;
+font-size:11px;
+color:#7a858d;
+}
+
+.info{
+margin-top:12px;
+padding:9px;
+border-radius:9px;
+background:#f4f7f9;
+color:#64717b;
+font-size:11px;
+text-align:center;
+}
+
+@media(max-width:500px){
+.login{
+padding:25px;
+}
+
+h1{
+font-size:24px;
+}
+
+.logo{
+font-size:50px;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="background">
+<div class="grain g1">🌾</div>
+<div class="grain g2">🌾</div>
+<div class="grain g3">🌾</div>
+<div class="grain g4">🌾</div>
+<div class="grain g5">🌾</div>
+</div>
+
+<div class="login">
+
+<div class="logo">🌾</div>
+
+<h1>GrainControl DZ</h1>
+
+<div class="line"></div>
+
+<div class="subtitle">
+نظام إدارة ومراقبة النوعية
+</div>
+
+<label for="role">نوع الحساب</label>
+
+<select id="role">
+<option value="manager">👤 المسير</option>
+<option value="deputy">👨‍💼 نائب مدير النوعية</option>
+<option value="inspector">🧪 مراقب النوعية</option>
+</select>
+
+<label for="username">اسم المستخدم</label>
+
+<input
+id="username"
+type="text"
+autocomplete="username"
+placeholder="أدخل اسم المستخدم">
+
+<label for="password">كلمة المرور</label>
+
+<input
+id="password"
+type="password"
+autocomplete="current-password"
+placeholder="أدخل كلمة المرور">
+
+<button onclick="login()">
+🔐 تسجيل الدخول
+</button>
+
+<div id="error" class="error"></div>
+
+<div class="info">
+الوصول إلى النظام يتم حسب الصلاحيات الممنوحة لكل مستخدم.
+</div>
+
+<div class="footer">
+نيابة النوعية • GrainControl DZ
+</div>
+
+</div>
+
+<script>
+(function(){
+
+"use strict";
+
+const USERS_KEY = "gcdz_users";
+const CURRENT_USER_KEY = "gcdz_user";
+
+/* =========================================================
+   إنشاء الحساب الأساسي للمسير عند أول تشغيل
+   ========================================================= */
+
+function initializeUsers(){
+
+const existing = localStorage.getItem(USERS_KEY);
+
+if(existing){
+try{
+const users = JSON.parse(existing);
+
+if(Array.isArray(users) && users.length > 0){
+return;
+}
+
+}catch(e){}
+}
+
+const defaultUsers = [
+
+{
+id:"user-manager-001",
+username:"admin",
+password:"1234",
+name:"المسير",
+role:"manager",
+warehouseId:null,
+active:true
+}
+
+];
+
+localStorage.setItem(
+USERS_KEY,
+JSON.stringify(defaultUsers)
+);
+
+}
+
+/* =========================================================
+   تسجيل الدخول
+   ========================================================= */
+
+window.login = function(){
+
+const role =
+document.getElementById("role").value;
+
+const username =
+document.getElementById("username").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const error =
+document.getElementById("error");
+
+error.textContent="";
+
+if(!username || !password){
+
+error.style.color="#b21e1e";
+
+error.textContent=
+"يرجى إدخال اسم المستخدم وكلمة المرور";
+
+return;
+}
+
+let users=[];
+
+try{
+
+users =
+JSON.parse(
+localStorage.getItem(USERS_KEY) || "[]"
+);
+
+}catch(e){
+
+users=[];
+
+}
+
+const user =
+users.find(function(item){
+
+return item.username === username &&
+item.password === password &&
+item.role === role &&
+item.active !== false;
+
+});
+
+if(!user){
+
+error.style.color="#b21e1e";
+
+error.textContent=
+"بيانات الدخول أو نوع الحساب غير صحيحة";
+
+return;
+}
+
+/* =========================================================
+   حفظ جلسة المستخدم
+   ========================================================= */
+
+const sessionUser = {
+
+id:user.id,
+
+username:user.username,
+
+name:user.name,
+
+role:user.role,
+
+warehouseId:user.warehouseId || null,
+
+loginAt:new Date().toISOString()
+
+};
+
+localStorage.setItem(
+CURRENT_USER_KEY,
+JSON.stringify(sessionUser)
+);
+
+error.style.color="#16804b";
+
+error.textContent=
+"تم تسجيل الدخول بنجاح";
+
+setTimeout(function(){
+
+location.href="index.html";
+
+},500);
+
+};
+
+/* =========================================================
+   Enter = تسجيل الدخول
+   ========================================================= */
+
+document
+.getElementById("password")
+.addEventListener("keydown",function(event){
+
+if(event.key==="Enter"){
+
+window.login();
+
+}
+
+});
+
+/* =========================================================
+   تشغيل النظام
+   ========================================================= */
+
+initializeUsers();
+
+})();
+</script>
+
+</body>
+</html>

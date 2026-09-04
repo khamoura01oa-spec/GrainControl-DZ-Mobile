@@ -1,0 +1,42 @@
+{
+    "name": "graincontrol-dz",
+    "version": "1.0.0",
+    "description": "GrainControl DZ",
+    "main": "main.js",
+    "author": "GrainControl DZ",
+    "license": "MIT",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
+    },
+    "devDependencies": {
+        "electron": "^38.0.0",
+        "electron-builder": "^26.0.0"
+    },
+    "build": {
+        "appId": "dz.graincontrol.app",
+        "productName": "GrainControl DZ",
+        "files": [
+            "index.html",
+            "login.html",
+            "main.js",
+            "quality.js",
+            "quality-ui.js",
+            "permissions.js",
+            "warehouse-isolation.js",
+            "upgrade-storage-units-v1.js",
+            "storage-ui-panel-v1.js",
+            "design.css",
+            "assets/**/*",
+            "package.json"
+        ],
+        "win": {
+            "target": "nsis"
+        }
+    },
+    "dependencies": {
+        "@capacitor/android": "^8.5.1",
+        "@capacitor/cli": "^8.5.1",
+        "@capacitor/core": "^8.5.1"
+    }
+}

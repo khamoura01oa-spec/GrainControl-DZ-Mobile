@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GrainControl DZ</string>
+    <string name="title_activity_main">GrainControl DZ</string>
+    <string name="package_name">dz.graincontrol.app</string>
+    <string name="custom_url_scheme">dz.graincontrol.app</string>
+</resources>

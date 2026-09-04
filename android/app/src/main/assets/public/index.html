@@ -1,0 +1,2694 @@
+﻿<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#087443"><title>GrainControl DZ</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f4f7f5;color:#173322}header{background:#087443;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}.logo{font-size:21px;font-weight:800}.sub{font-size:12px;opacity:.85}.wrap{max-width:1250px;margin:auto;padding:16px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.nav button,.btn{border:1px solid transparent;border-radius:11px;padding:11px 17px;font-weight:700;cursor:pointer;transition:all .2s ease;box-shadow:0 2px 6px rgba(23,51,34,.08);font-family:inherit}.nav button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 5px 12px rgba(23,51,34,.14)}.nav button:active,.btn:active{transform:translateY(0);box-shadow:0 2px 5px rgba(23,51,34,.1)}.primary{background:#087443;color:#fff}.secondary{background:#e8f3ed;color:#087443}.danger{background:#ffe6e6;color:#b21e1e}.activeNav{outline:2px solid #b7dcc7}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card,.panel{background:#fff;border:1px solid #e1e9e4;border-radius:16px;padding:16px;box-shadow:0 3px 12px #1733220d}.card b{display:block;font-size:25px;margin-top:6px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}section{display:none}.show{display:block}.toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid #edf1ee;text-align:right}th{background:#f0f6f2}.badge{padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}.ok{background:#e4f6ea;color:#087443}.warn{background:#fff1d9;color:#a65e00}.bad{background:#ffe4e4;color:#b21e1e}label{font-weight:700;font-size:13px;display:block;margin:9px 0 5px}input,select,textarea{width:100%;padding:12px 14px;border:1px solid #c7d8ce;border-radius:10px;background:rgba(255,255,255,.88);font:inherit;color:#173322;outline:none;transition:.2s;box-shadow:0 2px 7px rgba(23,51,34,.06)}input:focus,select:focus,textarea:focus{border-color:#087443;box-shadow:0 0 0 3px rgba(8,116,67,.12);background:#fff}textarea{min-height:80px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.notice{padding:12px;border-radius:11px;margin:7px 0}.blue{background:#eef6ff;color:#175b9c}.orange{background:#fff7e8}.redbg{background:#fff0f0}.muted{color:#66756c;font-size:13px}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:15px;z-index:20}.modal.on{display:flex}.modalbox{background:#fff;border-radius:18px;padding:18px;width:min(760px,100%);max-height:92vh;overflow:auto}.checkrow{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid #e2ebe5;padding:10px;border-radius:10px;margin:6px 0}.checkrow input{width:auto}.chat{height:330px;overflow:auto;background:#f7faf8;padding:12px;border-radius:12px}.msg{padding:9px 12px;border-radius:12px;margin:7px 0;max-width:80%;background:#e5f3eb}.me{margin-right:auto;background:#087443;color:#fff}.small{font-size:12px}.kpi{font-size:13px;color:#5b6b61}.print{display:none}@media(max-width:800px){.cards,.grid3,.grid{grid-template-columns:1fr 1fr}th:nth-child(4),td:nth-child(4){display:none}}@media(max-width:520px){.cards,.grid3,.grid{grid-template-columns:1fr}.wrap{padding:10px}.logo{font-size:18px}}
+
+<style id="gcSearchV11">
+.gc-search {
+  background:#fff;
+  border:1px solid #e1e9e4;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+  box-shadow:0 3px 12px #1733220d;
+}
+.gc-search-row {
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.gc-search-row input {
+  flex:1;
+}
+.gc-search-results {
+  margin-top:10px;
+  display:none;
+}
+.gc-search-result {
+  padding:10px;
+  border-bottom:1px solid #edf1ee;
+  cursor:pointer;
+}
+.gc-search-result:hover {
+  background:#f5faf7;
+}
+.gc-search-empty {
+  padding:10px;
+  color:#66756c;
+}
+.gc-search-tag {
+  display:inline-block;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#e8f3ed;
+  color:#087443;
+  font-size:11px;
+  font-weight:700;
+  margin-left:6px;
+}
+</style>
+</style></head><body><header><button class="btn danger" onclick="gcLogout()">تسجيل الخروج</button><div><div class="logo">🌾 GrainControl DZ</div><div class="sub">نظام إدارة ومراقبة جودة الحبوب</div></div><div>👤 أسامة بلعيدي</div></header><main class="wrap"><nav class="nav" id="nav"></nav>
+<div class="gc-search" id="gcSearchV11">
+  <div class="gc-search-row">
+    <input
+      id="gcSearchInput"
+      type="search"
+      placeholder="بحث في المخازن والعمليات والجودة والأشخاص والرسائل..."
+      autocomplete="off"
+    >
+    <button class="btn secondary" onclick="clearGCSearch()">مسح</button>
+  </div>
+  <div id="gcSearchResults" class="gc-search-results"></div>
+</div>
+
+
+<style id="GCZ_SMART_DASHBOARD_STEP7_STYLE">
+.gc-smart-dashboard {
+  margin-top: 14px;
+}
+
+.gc-smart-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.gc-quality-kpis {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+
+.gc-quality-kpi {
+  background:#fff;
+  border:1px solid #e1e9e4;
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 3px 12px #1733220d;
+}
+
+.gc-quality-kpi small {
+  display:block;
+  color:#66756c;
+  font-weight:700;
+}
+
+.gc-quality-kpi strong {
+  display:block;
+  font-size:27px;
+  margin-top:7px;
+}
+
+.gc-quality-progress {
+  height:12px;
+  background:#edf2ee;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.gc-quality-progress-bar {
+  height:100%;
+  background:#087443;
+}
+
+@media(max-width:800px) {
+  .gc-quality-kpis {
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:520px) {
+  .gc-quality-kpis {
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+<script id="GCZ_SMART_DASHBOARD_STEP7">
+
+function gcSmartDashboardData() {
+
+  const data = {
+    products: 0,
+    stable: 0,
+    follow: 0,
+    bad: 0,
+    noInspection: 0,
+    pests: 0,
+    highTemp: 0,
+    highHum: 0
+  };
+
+  (S.warehouses || []).forEach(function(w) {
+
+    if (typeof gcEnsureProducts === "function") {
+      gcEnsureProducts(w);
+    }
+
+    (w.products || []).forEach(function(p) {
+
+      data.products++;
+
+      const inspections =
+        Array.isArray(p.inspections)
+          ? p.inspections
+          : [];
+
+      if (!inspections.length) {
+        data.noInspection++;
+        return;
+      }
+
+      const last = inspections[0];
+      const result =
+        last.result || p.status || "مستقر";
+
+      if (result === "غير مطابق") {
+        data.bad++;
+      } else if (result === "متابعة") {
+        data.follow++;
+      } else {
+        data.stable++;
+      }
+
+      if (
+        last.pest &&
+        last.pest !== "لا توجد" &&
+        String(last.pest).trim() !== ""
+      ) {
+        data.pests++;
+      }
+
+      if (Number(last.temp) >= 35) {
+        data.highTemp++;
+      }
+
+      if (Number(last.hum) >= 14) {
+        data.highHum++;
+      }
+
+    });
+
+  });
+
+  return data;
+}
+
+
+function gcRenderSmartDashboard() {
+
+  const box =
+    document.getElementById("gcSmartDashboard");
+
+  if (!box) return;
+
+  const d = gcSmartDashboardData();
+
+  const inspected =
+    d.stable + d.follow + d.bad;
+
+  const compliance =
+    inspected > 0
+      ? Math.round((d.stable / inspected) * 100)
+      : 0;
+
+  let statusText = "الوضع مستقر";
+  let statusClass = "ok";
+
+  if (d.bad > 0) {
+    statusText = "توجد حالات تحتاج إجراء";
+    statusClass = "bad";
+  } else if (d.follow > 0 || d.noInspection > 0) {
+    statusText = "توجد حالات للمتابعة";
+    statusClass = "warn";
+  }
+
+  box.innerHTML =
+
+    '<div class="panel gc-smart-dashboard">' +
+
+      '<div class="gc-smart-title">' +
+
+        '<div>' +
+          '<h2>📊 لوحة جودة المخزون</h2>' +
+          '<div class="muted">' +
+            'ملخص ذكي لحالة المنتجات والمعاينات الحالية' +
+          '</div>' +
+        '</div>' +
+
+        '<span class="badge ' + statusClass + '">' +
+          statusText +
+        '</span>' +
+
+      '</div>' +
+
+      '<div class="gc-quality-kpis">' +
+
+        '<div class="gc-quality-kpi">' +
+          '<small>إجمالي المنتجات</small>' +
+          '<strong>' + d.products + '</strong>' +
+        '</div>' +
+
+        '<div class="gc-quality-kpi">' +
+          '<small>🟢 مستقرة</small>' +
+          '<strong>' + d.stable + '</strong>' +
+        '</div>' +
+
+        '<div class="gc-quality-kpi">' +
+          '<small>🟠 تحت المتابعة</small>' +
+          '<strong>' + d.follow + '</strong>' +
+        '</div>' +
+
+        '<div class="gc-quality-kpi">' +
+          '<small>🔴 غير مطابقة</small>' +
+          '<strong>' + d.bad + '</strong>' +
+        '</div>' +
+
+      '</div>' +
+
+      '<div class="panel" style="margin-top:12px">' +
+
+        '<h3>📈 نسبة الاستقرار</h3>' +
+
+        '<strong>' + compliance + '%</strong>' +
+
+        '<div class="gc-quality-progress">' +
+          '<div class="gc-quality-progress-bar" ' +
+          'style="width:' + compliance + '%">' +
+          '</div>' +
+        '</div>' +
+
+      '</div>' +
+
+      '<div class="grid3">' +
+
+        '<div class="card">' +
+          '<small>⚠️ بدون معاينة</small>' +
+          '<b>' + d.noInspection + '</b>' +
+        '</div>' +
+
+        '<div class="card">' +
+          '<small>🐛 آفات مسجلة</small>' +
+          '<b>' + d.pests + '</b>' +
+        '</div>' +
+
+        '<div class="card">' +
+          '<small>🌡️ حرارة مرتفعة</small>' +
+          '<b>' + d.highTemp + '</b>' +
+        '</div>' +
+
+      '</div>' +
+
+      '<div class="card" style="margin-top:12px">' +
+
+        '<small>💧 رطوبة مرتفعة</small>' +
+
+        '<b>' + d.highHum + '</b>' +
+
+        '<div class="actions">' +
+
+          '<button class="btn secondary" ' +
+          'onclick="go(\'alerts\')">' +
+            '⚠️ فتح جميع التنبيهات' +
+          '</button>' +
+
+        '</div>' +
+
+      '</div>' +
+
+    '</div>';
+}
+
+
+window.gcRenderSmartDashboard =
+  gcRenderSmartDashboard;
+
+</script>
+<section id="home"><div class="cards"><div class="card">🏭 المخازن<b id="kW">0</b><span class="kpi">عدد المخازن</span></div><div class="card">🌾 الكمية<b id="kQ">0</b><span class="kpi">قنطار</span></div><div class="card">🔍 الفحوصات<b id="kI">0</b><span class="kpi">إجمالي الفحوصات</span></div><div class="card">⚠️ المتابعة<b id="kA">0</b><span class="kpi">حالات تحتاج متابعة</span></div></div><div id="gcSmartDashboard"></div><div class="grid" style="margin-top:12px"><div class="panel"><h3>آخر النشاطات</h3><div id="activity"></div></div><div class="panel"><h3>حالة النظام</h3><div class="notice blue">البيانات محفوظة محليًا على هذا الجهاز.</div><div class="muted">يمكن لاحقًا ربط النظام بقاعدة بيانات وحسابات مستخدمين.</div></div></div></section>
+<section id="warehouses"><div class="toolbar"><h2>المخازن</h2><button class="btn primary" onclick="openW()">＋ إضافة مخزن</button></div><div class="panel"><table><thead><tr><th>المخزن</th><th>المنتج</th><th>الكمية</th><th>الموقع</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="wbody"></tbody></table></div></section>
+<section id="receive"><div class="toolbar"><h2>📥 استقبال المنتجات</h2><button class="btn primary" onclick="openR()">＋ عملية استقبال</button></div><div class="panel"><table><thead><tr><th>التاريخ</th><th>المنتج</th><th>الكمية</th><th>الوجهة</th><th>المصدر</th></tr></thead><tbody id="rbody"></tbody></table></div></section>
+<section id="transfer"><div class="toolbar"><h2>🔄 تحويل المنتجات</h2><button class="btn primary" onclick="openT()">＋ تحويل جديد</button></div><div class="panel"><p class="muted">التحويل يدوي، سواء بين المخازن أو إلى/من خارج المخازن.</p><table><thead><tr><th>التاريخ</th><th>الكمية</th><th>من</th><th>إلى</th><th>المنتج</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+<section id="pulsesRice"><div class="toolbar"><h2>🌾 البقول الجافة والأرز</h2><button class="btn primary" onclick="openPulsesRiceInspection()">＋ معاينة جديدة</button></div><div class="panel"><p class="muted">سجل مستقل لمعاينات البقول الجافة والأرز والأرز، مع حفظ تاريخ المعاينات وبيانات المراقب والمخزن.</p><table><thead><tr><th>التاريخ</th><th>المخزن</th><th>المنتج</th><th>الكمية</th><th>المراقب</th><th>النتيجة</th></tr></thead><tbody id="prBody"></tbody></table></div></section><section id="inspections"><div class="toolbar"><h2>🧪 مراقبة الجودة</h2><button class="btn primary" onclick="openI()">＋ فحص جديد</button></div><div class="panel"><table><thead><tr><th>التاريخ</th><th>المخزن</th><th>المنتج</th><th>حرارة</th><th>رطوبة</th><th>النتيجة</th><th>تفاصيل</th></tr></thead><tbody id="ibody"></tbody></table></div></section>
+<section id="alerts"><h2>⚠️ التنبيهات</h2><div id="alertsBox" class="panel"></div></section><script>setTimeout(function(){if(window.gcRenderSmartAlerts)gcRenderSmartAlerts();},0);</script>
+<section id="reports"><div class="toolbar"><h2>📄 التقارير</h2><div class="actions"><button class="btn primary" onclick="makeReport()">إنشاء تقرير</button><button class="btn secondary" onclick="window.print()">طباعة / PDF</button></div></div><div id="report" class="panel"><p class="muted">اضغط «إنشاء تقرير» لإظهار التقرير الحالي.</p></div></section>
+<section id="chat"><div class="toolbar"><h2>💬 المحادثات</h2><button class="btn primary" onclick="openPerson()">＋ إضافة شخص</button></div><div class="grid"><div class="panel"><h3>المحادثة</h3><div id="chatbox" class="chat"></div><div class="actions"><input id="chatinput" placeholder="اكتب رسالة..."><button class="btn primary" onclick="sendMsg()">إرسال</button></div></div><div class="panel"><h3>الأشخاص</h3><div id="people"></div></div></div></section>
+<section id="more"><div class="panel"><h3>المستخدمون والصلاحيات</h3><p class="muted">إدارة حسابات المستخدمين والأدوار والصلاحيات.</p><div class="actions"><button class="btn primary" onclick="openUsers()">إدارة المستخدمين</button></div></div><h2>⚙️ المزيد</h2><div class="grid3"><div class="panel"><h3>نسخة احتياطية</h3><button class="btn secondary" onclick="backup()">تصدير البيانات</button></div><div class="panel"><h3>استرجاع</h3><input type="file" id="restoreFile" accept="application/json" onchange="restore(event)"></div><div class="panel"><h3>بيانات التطبيق</h3><p>GrainControl DZ<br>إدارة ومراقبة جودة الحبوب<br>صاحب التطبيق: أسامة بلعيدي</p></div></div></section></main>
+<div id="modal" class="modal"><div class="modalbox" id="modalbox"></div></div><script>
+const KEY='gcdz_v2';let S=JSON.parse(localStorage.getItem(KEY)||'null')||{warehouses:[],receives:[],transfers:[],inspections:[],people:[],messages:[]};const save=()=>localStorage.setItem(KEY,JSON.stringify(S));const $=id=>document.getElementById(id);const today=()=>new Date().toLocaleDateString('ar-DZ');
+const pages=[['home','الرئيسية'],['warehouses','المخازن'],['storageUnits','الصوامع والخلايا'],['receive','الاستقبال'],['transfer','التحويل'],['inspections','الفحوصات'],['pulsesRice','البقول الجافة والأرز'],['alerts','التنبيهات'],['reports','التقارير'],['chat','المحادثات'],['more','المزيد']];function nav(){ $('nav').innerHTML=pages.map(p=>`<button class="btn secondary" onclick="go('${p[0]}')">${p[1]}</button>`).join('')}function go(id){document.querySelectorAll('section').forEach(x=>x.classList.remove('show'));$(id).classList.add('show');render();}function closeM(){$('modal').classList.remove('on')}function modal(html){$('modalbox').innerHTML=html;$('modal').classList.add('on')}
+function openW(){modal(`<h2>إضافة مخزن</h2><div class="grid"><div><label>اسم/رقم المخزن</label><input id="wn"></div><div><label>المنتج</label><input id="wp" value="قمح صلب"></div><div><label>الكمية (قنطار)</label><input id="wq" type="number"></div><div><label>الموقع</label><input id="wl"></div></div><div class="actions"><button class="btn primary" onclick="addW()">حفظ</button><button class="btn secondary" onclick="closeM()">إلغاء</button></div>`)}function addW(){if(!$('wn').value.trim())return alert('أدخل اسم المخزن');S.warehouses.push({id:Date.now(),name:$('wn').value.trim(),product:$('wp').value||'غير محدد',qty:+$('wq').value||0,loc:$('wl').value||'غير محدد',status:'مستقر',createdAt:today(),lastMovement:today(),history:[{date:today(),type:'إنشاء المخزن',details:'تم إنشاء المخزن وإضافته إلى النظام'}],problems:[],correctiveActions:[]});save();closeM();go('warehouses')}
+function openR(){let opts=S.warehouses.map(w=>`<option>${w.name}</option>`).join('');modal(`<h2>استقبال منتج</h2><div class="grid"><div><label>المنتج</label><input id="rp" value="قمح صلب"></div><div><label>الكمية (قنطار)</label><input id="rq" type="number"></div><div><label>الوجهة</label><select id="rd">${opts||'<option>لا يوجد مخزن</option>'}</select></div><div><label>المصدر</label><input id="rs" placeholder="مخزن/متعامل/خارج المخازن"></div></div><div class="actions"><button class="btn primary" onclick="addR()">تسجيل</button><button class="btn secondary" onclick="closeM()">إلغاء</button></div>`)}function addR(){let q=+$('rq').value||0,d=$('rd').value;if(!q||!d)return alert('أكمل البيانات');let w=S.warehouses.find(x=>x.name===d);if(!w)return alert('المخزن غير موجود');let product=$('rp').value||'غير محدد',source=$('rs').value||'غير محدد',date=today();w.qty+=q;w.lastMovement=date;w.history=w.history||[];w.history.unshift({date:date,type:'استقبال منتج',details:'استقبال '+q+' قنطار من '+source+' — المنتج: '+product});S.receives.unshift({date:date,product:product,qty:q,dest:d,source:source});save();closeM();go('receive')}
+function openT(){let opts=S.warehouses.map(w=>`<option>${w.name}</option>`).join('');modal(`<h2>تحويل منتج</h2><div class="grid"><div><label>الكمية (قنطار)</label><input id="tq" type="number"></div><div><label>المنتج</label><input id="tp" value="قمح صلب"></div><div><label>من</label><input id="tf" placeholder="اسم مخزن أو خارج المخازن"></div><div><label>إلى</label><input id="tt" placeholder="اسم مخزن أو خارج المخازن"></div></div><div class="actions"><button class="btn primary" onclick="addT()">تسجيل التحويل</button><button class="btn secondary" onclick="closeM()">إلغاء</button></div>`)}function addT(){let q=+$('tq').value||0,f=$('tf').value.trim(),t=$('tt').value.trim();if(!q||!f||!t)return alert('أكمل البيانات');let fw=S.warehouses.find(w=>w.name===f),tw=S.warehouses.find(w=>w.name===t);if(fw){if(fw.qty<q)return alert('الكمية غير كافية في المخزن');fw.qty-=q}if(tw)tw.qty+=q;S.transfers.unshift({date:today(),qty:q,from:f,to:t,product:$('tp').value});save();closeM();go('transfer')}
+
+/* =========================================================
+   GCZ_PRODUCT_INSPECTION_STEP2
+   GrainControl DZ
+   Inspection linked to warehouse + product
+   ========================================================= */
+
+function gcInspectionProducts() {
+  const warehouseId = $("iw").value;
+  const box = $("iproductbox");
+
+  if (!box) return;
+
+  const w = S.warehouses.find(x => x.id == Number(warehouseId));
+
+  if (!w) {
+    box.innerHTML = '<label>المنتج</label><select id="iprod"><option>لا يوجد مخزن</option></select>';
+    return;
+  }
+
+  if (typeof gcEnsureProducts === "function") {
+    gcEnsureProducts(w);
+  }
+
+  const products = w.products || [];
+
+  if (!products.length) {
+    box.innerHTML = `
+      <label>المنتج</label>
+      <select id="iprod">
+        <option value="">لا توجد منتجات في هذا المخزن</option>
+      </select>
+      <div class="notice orange">
+        يجب إضافة منتج إلى المخزن أولاً.
+      </div>
+    `;
+    return;
+  }
+
+  box.innerHTML = `
+    <label>المنتج</label>
+    <select id="iprod">
+      ${products.map(function(p) {
+        return '<option value="' + p.id + '">' +
+          (p.name || "غير محدد") +
+          ' — ' +
+          Number(p.qty || 0).toLocaleString("ar-DZ") +
+          ' قنطار</option>';
+      }).join("")}
+    </select>
+  `;
+}
+
+function updatePulsesRiceProduct() { const p=$("prProduct"); const c=$("prProductClass"); const r=$("prStandardRef"); if(!p||!c||!r)return; const v=p.value; const data={حمص:["بقول جافة - حمص","قرار وزاري مشترك 06-09-1997 - البقول الجافة"],عدس:["بقول جافة - عدس","قرار وزاري مشترك 06-09-1997 - البقول الجافة"],"فاصوليا جافة":["بقول جافة - فاصوليا جافة","قرار وزاري مشترك 06-09-1997 - البقول الجافة"],"جلبانة جافة":["بقول جافة - جلبانة جافة","قرار وزاري مشترك 06-09-1997 - البقول الجافة"],"فول جاف":["بقول جافة - فول جاف","قرار وزاري مشترك 06-09-1997 - البقول الجافة"],لوبيا:["بقول جافة - لوبيا","قرار وزاري مشترك 06-09-1997 - البقول الجافة"],أرز:["أرز","قرار وزاري مشترك 06-09-1997 - الأرز"]}; const d=data[v]; c.value=d?d[0]:""; r.value=d?d[1]:""; const ml=$("prMoistureLimit"); if(ml){ml.value=v==="حمص"?"حسب المرجع المعتمد للحمص":v==="عدس"?"حسب المرجع المعتمد للعدس":v==="فاصوليا جافة"?"حسب المرجع المعتمد للفاصوليا الجافة":v==="أرز"?"حسب المرجع المعتمد للأرز":"";} } function openPulsesRiceInspection() {
+  const user = JSON.parse(localStorage.getItem("gcdz_user") || "null");
+  const warehouses = Array.isArray(S.warehouses) ? S.warehouses : [];
+
+  const visibleWarehouses = user && user.role === "inspector" && typeof gcAssignedWarehouseIds === "function" ? warehouses.filter(function(w){ return gcAssignedWarehouseIds().includes(String(w.id)); }) : warehouses; const warehouseOptions = visibleWarehouses
+    .map(function (w) {
+      return `<option value="${w.id}">${w.name}</option>`;
+    })
+    .join("");
+
+  modal(`
+    <h2>🌾 معاينة البقول الجافة والأرز</h2>
+
+    <div class="grid">
+      <div>
+        <label>رقم المعاينة</label>
+        <input id="prNumber" value="PR-${Date.now()}">
+      </div>
+
+      <div>
+        <label>تاريخ المعاينة</label>
+        <input id="prDate" type="date" value="${today()}">
+      </div>
+
+      <div>
+        <label>المخزن</label>
+        <select id="prWarehouse">
+          <option value="">اختر المخزن</option>
+          ${warehouseOptions}
+        </select>
+      </div>
+
+      <div>
+        <label>اسم المراقب</label>
+        <input id="prInspector" value="${user && user.name ? user.name : ""}" readonly>
+      </div>
+
+      <div>
+        <label>المنتج</label>
+        <select id="prProduct" onchange="updatePulsesRiceProduct()">
+          <option value="">اختر المنتج</option>
+          <option>حمص</option>
+          <option>عدس</option>
+          <option>فاصوليا جافة</option>
+          <option>جلبانة جافة</option>
+          <option>فول جاف</option>
+          <option>لوبيا</option>
+          <option>أرز</option>
+          <option>منتج آخر</option>
+        </select>
+      </div>
+
+      <div>
+        <label>الصنف / النوع</label>
+        <input id="prType" placeholder="الصنف أو النوع التجاري">
+      </div>
+
+      <div>
+        <label>الكمية (قنطار)</label>
+        <input id="prQuantity" type="number" min="0" step="0.01">
+      </div>
+
+      <div>
+        <label>رقم الدفعة / Lot</label>
+        <input id="prLot">
+      </div>
+
+      <div>
+        <label>تاريخ الإنتاج / التوضيب</label>
+        <input id="prProductionDate" type="date">
+      </div>
+
+      <div>
+        <label>تاريخ انتهاء الصلاحية</label>
+        <input id="prExpiryDate" type="date">
+      </div>
+
+      <div>
+        <label>بلد المنشأ</label>
+        <input id="prOrigin" placeholder="مثال: الجزائر">
+      </div>
+
+      <div>
+        <label>المورد</label>
+        <input id="prSupplier">
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:15px"><h3>🔬 الفحص النوعي</h3><div class="grid"><div><label>الحالة الظاهرية</label><select id="prAppearance"><option value="">اختر</option><option>جيدة</option><option>متوسطة</option><option>غير مقبولة</option></select></div><div><label>الرائحة</label><select id="prOdor"><option value="">اختر</option><option>طبيعية</option><option>غير طبيعية</option></select></div><div><label>حشرات حية</label><select id="prInsects"><option value="">اختر</option><option>لا توجد</option><option>توجد</option></select></div><div><label>مواد غريبة</label><input id="prForeignMatter" type="number" min="0" step="0.01" placeholder="%"></div><div><label>الشوائب</label><input id="prImpurities" type="number" min="0" step="0.01" placeholder="%"></div><div><label>الحبوب المتضررة</label><input id="prDamaged" type="number" min="0" step="0.01" placeholder="%"></div><div><label>الحبوب المتغيرة اللون</label><input id="prDiscolored" type="number" min="0" step="0.01" placeholder="%"></div><div><label>الرطوبة</label><input id="prMoisture" type="number" min="0" step="0.01" placeholder="%"></div><div><label>حالة التعبئة والأكياس</label><select id="prPackaging"><option value="">اختر</option><option>سليمة</option><option>مقبولة</option><option>غير سليمة</option></select></div><div><label>الوسم والبيانات</label><select id="prLabel"><option value="">اختر</option><option>مطابق</option><option>غير مطابق</option></select></div></div><div style="margin-top:12px"><label>الملاحظات</label><textarea id="prNotes" rows="3" placeholder="سجل الملاحظات وأي عيوب أو تحفظات"></textarea></div></div><div class="panel" style="margin-top:15px"><h3>📊 الفحص الفيزيائي - الرطوبة</h3><div class="grid"><div><label>الرطوبة المقاسة (%)</label><input id="prMoistureMeasured" type="number" min="0" step="0.01" placeholder="أدخل نتيجة التحليل"></div><div><label>الحد المرجعي</label><input id="prMoistureLimit" readonly placeholder="يحدد حسب المرجع المعتمد"></div><div><label>تقييم الرطوبة</label><select id="prMoistureStatus"><option value="غير محدد">غير محدد</option><option value="مطابق">مطابق</option><option value="غير مطابق">غير مطابق</option></select></div></div><p class="muted" style="margin-top:10px">ملاحظة: لا يعتمد البرنامج حدًا قانونيًا رقميًا تلقائيًا قبل إدخال/اعتماد المرجع التنظيمي المناسب.</p></div><div class="panel" style="margin-top:15px"><h3>⚖️ القرار النهائي للمعاينة</h3><div class="grid"><div><label>القرار النهائي</label><select id="prFinalDecision"><option value="قيد المعاينة">قيد المعاينة</option><option value="مطابق">مطابق</option><option value="مطابق بتحفظ">مطابق بتحفظ</option><option value="غير مطابق">غير مطابق</option></select></div><div><label>تصنيف المنتج</label><input id="prProductClass" readonly placeholder="يُحدد تلقائيًا حسب المنتج"></div><div><label>المرجع التنظيمي</label><input id="prStandardRef" readonly placeholder="يُحدد تلقائيًا حسب المنتج"></div></div><div style="margin-top:12px"><label>مبررات القرار / الإجراءات</label><textarea id="prDecisionNotes" rows="3" placeholder="اذكر أسباب القرار والإجراء المتخذ عند وجود تحفظ أو عدم مطابقة"></textarea></div></div><div class="panel" style="margin-top:15px"><h3>🛡️ قائمة التحقق ISO 22000 / HACCP</h3><div class="grid"><div><label>التتبع ورقم الدفعة</label><select id="prTraceability"><option value="">اختر</option><option>مطابق</option><option>غير مطابق</option></select></div><div><label>تحديد مصدر المنتج</label><select id="prSourceTrace"><option value="">اختر</option><option>متوفر</option><option>غير متوفر</option></select></div><div><label>تقييم مخاطر سلامة الغذاء</label><select id="prFoodSafetyRisk"><option value="">اختر</option><option>لا توجد مخاطر حرجة</option><option>توجد مخاطر تستوجب إجراء</option></select></div><div><label>الإجراء التصحيحي</label><select id="prCorrectiveAction"><option value="">اختر</option><option>لا يوجد</option><option>تم اتخاذ إجراء</option><option>يتطلب متابعة</option></select></div></div><div style="margin-top:12px"><label>ملاحظات ISO / HACCP</label><textarea id="prIsoHaccpNotes" rows="3" placeholder="سجل مخاطر سلامة الغذاء أو الإجراءات التصحيحية أو ملاحظات التتبع"></textarea></div></div><div class="actions">
+      <button class="btn primary" onclick="savePulsesRiceInspection()">
+        حفظ المعاينة
+      </button>
+
+      <button class="btn secondary" onclick="closeM()">
+        إلغاء
+      </button>
+    </div>
+  `);
+}function savePulsesRiceInspection() { const user = JSON.parse(localStorage.getItem("gcdz_user") || "null"); const record = { id: Date.now(), number: $("prNumber").value.trim(), date: $("prDate").value, warehouseId: $("prWarehouse").value,     warehouse: (function(){ const w=(Array.isArray(S.warehouses)?S.warehouses:[]).find(function(x){ return String(x.id)===String($("prWarehouse").value); }); return w ? w.name : ""; })(), inspector: $("prInspector").value.trim(), inspectorId: user && user.id ? String(user.id) : null, product: $("prProduct").value, type: $("prType").value.trim(), quantity: $("prQuantity").value, lot: $("prLot").value.trim(), productionDate: $("prProductionDate").value, expiryDate: $("prExpiryDate").value, origin: $("prOrigin").value.trim(), supplier: $("prSupplier").value.trim(), appearance: $("prAppearance").value, odor: $("prOdor").value, insects: $("prInsects").value, foreignMatter: $("prForeignMatter").value, impurities: $("prImpurities").value, damaged: $("prDamaged").value, discolored: $("prDiscolored").value, moisture: $("prMoisture").value, moistureMeasured: $("prMoistureMeasured").value, moistureLimit: $("prMoistureLimit").value, moistureStatus: $("prMoistureStatus").value, packaging: $("prPackaging").value, label: $("prLabel").value, notes: $("prNotes").value.trim(), finalDecision: $("prFinalDecision").value, productClass: $("prProductClass").value, standardRef: $("prStandardRef").value, decisionNotes: $("prDecisionNotes").value.trim(),
+    traceability: $("prTraceability").value,
+    sourceTrace: $("prSourceTrace").value,
+    foodSafetyRisk: $("prFoodSafetyRisk").value,
+    correctiveAction: $("prCorrectiveAction").value,
+    isoHaccpNotes: $("prIsoHaccpNotes").value.trim(), result: $("prFinalDecision").value, createdAt: Date.now() }; if (user && user.role === "inspector" && typeof gcCanAccessWarehouse === "function" && !gcCanAccessWarehouse(record.warehouseId)) { alert("لا يمكنك تسجيل معاينة لهذا المخزن لأنه غير مخصص لك."); return; } if (!record.warehouse || !record.product) { alert("يرجى اختيار المخزن والمنتج."); return; } let records = JSON.parse(localStorage.getItem("gcdz_pulses_rice_records") || "[]"); if (!Array.isArray(records)) records=[]; records.unshift(record); localStorage.setItem("gcdz_pulses_rice_records", JSON.stringify(records)); alert("تم حفظ معاينة البقول الجافة والأرز بنجاح."); closeM(); renderPulsesRice(); } function renderPulsesRice() { const body=$("prBody"); if(!body)return; let records=JSON.parse(localStorage.getItem("gcdz_pulses_rice_records") || "[]"); if(!Array.isArray(records))records=[]; const user=JSON.parse(localStorage.getItem("gcdz_user") || "null"); if(user && user.role==="inspector") records=records.filter(function(r){return String(r.inspectorId || "")===String(user.id || "");}); body.innerHTML=records.map(function(r){return "<tr><td>"+(r.date||"")+"</td><td>"+(r.warehouse||"")+"</td><td>"+(r.product||"")+"</td><td>"+(r.quantity||"")+"</td><td>"+(r.inspector||"")+"</td><td><span class=\"badge "+(r.result==="مطابق"?"ok":"warn")+"\">"+(r.result||"قيد المعاينة")+"</span></td></tr>";}).join("") || "<tr><td colspan=\"6\">لا توجد معاينات بعد.</td></tr>"; } function openI() {
+  if (!S.warehouses.length) {
+    return alert("أضف مخزنًا أولًا");
+  }
+
+  const opts = S.warehouses.map(function(w) {
+    return '<option value="' + w.id + '">' +
+      (w.name || "غير محدد") +
+      '</option>';
+  }).join("");
+
+  modal(`
+    <h2>فحص جودة جديد</h2>
+
+    <div class="grid">
+
+      <div>
+        <label>المخزن</label>
+        <select id="iw" onchange="gcInspectionProducts()">
+          ${opts}
+        </select>
+      </div>
+
+      <div id="iproductbox">
+        <label>المنتج</label>
+        <select id="iprod"></select>
+      </div>
+
+      <div>
+        <label>درجة الحرارة °C</label>
+        <input id="it" type="number" step="0.1">
+      </div>
+
+      <div>
+        <label>الرطوبة %</label>
+        <input id="ih" type="number" step="0.1">
+      </div>
+
+      <div>
+        <label>الحشرات</label>
+        <select id="ip">
+          <option>لا توجد</option>
+          <option>خنافس</option>
+          <option>Trogoderma</option>
+          <option>يرقات</option>
+          <option>أخرى</option>
+        </select>
+      </div>
+
+    </div>
+
+    <h3>ورقة المعاينة</h3>
+
+    <div class="checkrow">
+      نظافة المخزن
+      <input id="c1" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      حالة الأكياس جيدة
+      <input id="c2" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      عدم وجود تسرب مياه
+      <input id="c3" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      عدم وجود روائح غير طبيعية
+      <input id="c4" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      عدم وجود شوائب غير مقبولة
+      <input id="c5" type="checkbox" checked>
+    </div>
+
+    <label>ملاحظات</label>
+    <textarea id="in"></textarea>
+
+    <div class="actions">
+      <button class="btn primary" onclick="addI()">
+        حفظ المعاينة
+      </button>
+
+      <button class="btn secondary" onclick="closeM()">
+        إلغاء
+      </button>
+    </div>
+  `);
+
+  gcInspectionProducts();
+}
+
+function addI() {
+  if (!S.warehouses.length) {
+    return alert("أضف مخزنًا أولًا");
+  }
+
+  const warehouseId = Number($("iw").value);
+
+  const w = S.warehouses.find(function(x) {
+    return Number(x.id) === warehouseId;
+  });
+
+  if (!w) {
+    return alert("المخزن غير موجود");
+  }
+
+  if (typeof gcEnsureProducts === "function") {
+    gcEnsureProducts(w);
+  }
+
+  const productId = Number($("iprod").value);
+
+  const product = (w.products || []).find(function(p) {
+    return Number(p.id) === productId;
+  });
+
+  if (!product) {
+    return alert("اختر منتجًا من هذا المخزن");
+  }
+
+  const temp = Number($("it").value) || 0;
+  const hum = Number($("ih").value) || 0;
+  const pest = $("ip").value;
+
+  const issues = [];
+
+  if (pest !== "لا توجد") {
+    issues.push("حشرات");
+  }
+
+  if (temp > 35) {
+    issues.push("حرارة مرتفعة");
+  }
+
+  if (!$("c1").checked) {
+    issues.push("نظافة");
+  }
+
+  if (!$("c2").checked) {
+    issues.push("الأكياس");
+  }
+
+  if (!$("c3").checked) {
+    issues.push("تسرب مياه");
+  }
+
+  if (!$("c4").checked) {
+    issues.push("رائحة");
+  }
+
+  if (!$("c5").checked) {
+    issues.push("شوائب");
+  }
+
+  const result = issues.length ? "متابعة" : "مستقر";
+
+  const inspection = {
+    id: Date.now(),
+    date: today(),
+
+    warehouse: w.name,
+    warehouseId: w.id,
+
+    product: product.name,
+    productId: product.id,
+
+    productQty: Number(product.qty || 0),
+
+    temp: temp,
+    hum: hum,
+    pest: pest,
+
+    result: result,
+    issues: issues,
+
+    notes: $("in").value,
+
+    createdAt: today()
+  };
+
+  S.inspections.unshift(inspection);
+
+  /*
+   * Update the product status automatically according
+   * to the inspection result.
+   */
+  if (result === "متابعة") {
+    product.status = "يحتاج متابعة";
+  } else if (product.status !== "خطر" && product.status !== "غير مطابق") {
+    product.status = "مستقر";
+  }
+
+  /*
+   * Save the inspection in the warehouse history.
+   */
+  w.history = w.history || [];
+
+  w.history.unshift({
+    date: today(),
+    type: "معاينة جودة",
+    details:
+      "معاينة المنتج: " +
+      product.name +
+      " — النتيجة: " +
+      result
+  });
+
+  /*
+   * Keep the legacy fields synchronized for compatibility.
+   */
+  w.product = product.name;
+  w.qty = (w.products || []).reduce(function(sum, p) {
+    return sum + Number(p.qty || 0);
+  }, 0);
+
+  save();
+  closeM();
+  go("inspections");
+}
+
+function openPerson(){modal(`<h2>إضافة شخص</h2><label>الاسم</label><input id="pn"><label>البريد الإلكتروني</label><input id="pe" type="email"><div class="actions"><button class="btn primary" onclick="addP()">إضافة</button><button class="btn secondary" onclick="closeM()">إلغاء</button></div>`)}function addP(){let n=$('pn').value.trim(),e=$('pe').value.trim();if(!n||!e)return alert('أكمل البيانات');S.people.push({name:n,email:e});save();closeM();go('chat')}function sendMsg(){let x=$('chatinput').value.trim();if(!x)return;S.messages.push({text:x,date:today(),me:true});save();$('chatinput').value='';renderChat()}function renderChat(){$('chatbox').innerHTML=S.messages.map(m=>`<div class="msg ${m.me?'me':''}">${m.text}<div class="small">${m.date}</div></div>`).join('')||'<div class="muted">لا توجد رسائل بعد.</div>';$('people').innerHTML=S.people.map(p=>`<div class="notice blue"><b>${p.name}</b><br>${p.email}</div>`).join('')||'<div class="muted">لم تتم إضافة أشخاص.</div>';}
+function makeReport(){let q=S.warehouses.reduce((a,w)=>a+w.qty,0),follow=S.inspections.filter(i=>i.result==='متابعة').length,pests=S.inspections.filter(i=>i.pest!=='لا توجد').length;$('report').innerHTML=`<div class="print"><h1>GrainControl DZ</h1></div><h2>تقرير مراقبة الجودة</h2><p><b>التاريخ:</b> ${today()}</p><div class="grid3"><div class="card">عدد المخازن<b>${S.warehouses.length}</b></div><div class="card">إجمالي الكمية<b>${q.toLocaleString('ar-DZ')}</b> قنطار</div><div class="card">الفحوصات<b>${S.inspections.length}</b></div></div><div class="notice ${follow?'orange':'blue'}">حالات تحتاج متابعة: <b>${follow}</b> — بؤر/حالات حشرية مسجلة: <b>${pests}</b></div><h3>ملخص المخازن</h3><table><tr><th>المخزن</th><th>المنتج</th><th>الكمية</th><th>الموقع</th></tr>${S.warehouses.map(w=>`<tr><td>${w.name}</td><td>${w.product}</td><td>${w.qty.toLocaleString('ar-DZ')}</td><td>${w.loc}</td></tr>`).join('')}</table><h3>آخر الفحوصات</h3><table><tr><th>التاريخ</th><th>المخزن</th><th>الحرارة</th><th>الرطوبة</th><th>النتيجة</th></tr>${S.inspections.slice(0,10).map(i=>`<tr><td>${i.date}</td><td>${i.warehouse}</td><td>${i.temp}</td><td>${i.hum}</td><td>${i.result}</td></tr>`).join('')}</table>`}
+function backup(){let b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='GrainControlDZ_backup.json';a.click();URL.revokeObjectURL(a.href)}function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{S=JSON.parse(r.result);save();render();alert('تم الاسترجاع')}catch{alert('ملف غير صالح')}};r.readAsText(f)}
+function render(){
+  if (typeof gcRenderSmartDashboard === "function") {
+    gcRenderSmartDashboard();
+  }
+ S.warehouses.forEach(gcEnsureProducts); save(); $('kW').textContent=S.warehouses.length;$('kQ').textContent=S.warehouses.reduce((a,w)=>a+w.qty,0).toLocaleString('ar-DZ');$('kI').textContent=S.inspections.length;$('kA').textContent=S.inspections.filter(i=>i.result==='متابعة').length;$('wbody').innerHTML=S.warehouses.map(w=>`<tr><td>${w.name}</td><td>${w.product}</td><td>${w.qty.toLocaleString('ar-DZ')}</td><td>${w.loc}</td><td><span class="badge ${w.status==='مستقر'?'ok':'warn'}">${w.status}</span></td><td><button class="btn secondary" onclick="warehouseCard(${w.id})">بطاقة المخزن</button><button class="btn danger" onclick="delW(${w.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="6">لا توجد مخازن.</td></tr>';$('rbody').innerHTML=S.receives.map(x=>`<tr><td>${x.date}</td><td>${x.product}</td><td>${x.qty}</td><td>${x.dest}</td><td>${x.source}</td></tr>`).join('')||'<tr><td colspan="5">لا توجد عمليات.</td></tr>';$('tbody').innerHTML=S.transfers.map(x=>`<tr><td>${x.date}</td><td>${x.qty}</td><td>${x.from}</td><td>${x.to}</td><td>${x.product}</td></tr>`).join('')||'<tr><td colspan="5">لا توجد تحويلات.</td></tr>';$('ibody').innerHTML=S.inspections.map((x,n)=>`<tr><td>${x.date}</td><td>${x.warehouse}</td><td>${x.product}</td><td>${x.temp}</td><td>${x.hum}</td><td><span class="badge ${x.result==='متابعة'?'warn':'ok'}">${x.result}</span></td><td><button class="btn secondary" onclick="viewI(${n})">عرض</button></td></tr>`).join('')||'<tr><td colspan="7">لا توجد فحوصات.</td></tr>';$('alertsBox').innerHTML=S.inspections.filter(i=>i.result==='متابعة').map(i=>`<div class="notice orange">⚠️ <b>${i.warehouse}</b> — ${i.issues.join('، ')||'تحتاج متابعة'}</div>`).join('')||'<div class="notice blue">لا توجد تنبيهات.</div>';$('activity').innerHTML=S.inspections.slice(0,5).map(i=>`<div class="notice ${i.result==='متابعة'?'orange':'blue'}">${i.date} — ${i.warehouse}: ${i.result}</div>`).join('')||'<div class="muted">لا توجد بيانات بعد.</div>';renderChat()}
+
+/* =========================================================
+   GCZ_PRODUCTS_STEP1
+   GrainControl DZ - Multi Products Per Warehouse
+   ========================================================= */
+
+function gcEnsureProducts(w) {
+  if (!w.products || !Array.isArray(w.products)) {
+    w.products = [];
+
+    if (w.product || Number(w.qty || 0) > 0) {
+      w.products.push({
+        id: Date.now() + Math.floor(Math.random() * 1000),
+        name: w.product || "غير محدد",
+        qty: Number(w.qty || 0),
+        status: w.status || "مستقر",
+        addedAt: today(),
+        notes: ""
+      });
+    }
+  }
+
+  return w.products;
+}
+
+function gcProductStatusClass(status) {
+  if (status === "مستقر") return "ok";
+  if (status === "خطر" || status === "غير مطابق") return "danger";
+  return "warn";
+}
+
+function gcWarehouseProducts(id) {
+  const w = S.warehouses.find(x => x.id === id);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+  save();
+
+  let html = `
+    <h2>منتجات المخزن: ${w.name}</h2>
+
+    <div class="panel">
+      <div class="actions">
+        <button class="btn primary" onclick="gcAddProduct(${id})">
+          ➕ إضافة منتج
+        </button>
+
+        <button class="btn secondary" onclick="warehouseCard(${id})">
+          ← بطاقة المخزن
+        </button>
+      </div>
+    </div>
+
+    <div class="grid3">
+  `;
+
+  if (!w.products.length) {
+    html += `
+      <div class="card">
+        <h3>لا توجد منتجات</h3>
+        <p class="muted">أضف أول منتج إلى هذا المخزن.</p>
+      </div>
+    `;
+  }
+
+  w.products.forEach(function(p) {
+    const status = p.status || "مستقر";
+    const cls = gcProductStatusClass(status);
+
+    html += `
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+          <h3 style="margin:0">${p.name || "غير محدد"}</h3>
+          <span class="badge ${cls}">${status}</span>
+        </div>
+
+        <p style="font-size:1.15rem;margin:15px 0">
+          <b>${Number(p.qty || 0).toLocaleString("ar-DZ")}</b>
+          قنطار
+        </p>
+
+        <p class="muted">
+          تاريخ الإضافة: ${p.addedAt || "غير مسجل"}
+        </p>
+
+        ${p.notes ? `<p>${p.notes}</p>` : ""}
+
+        <div class="actions">
+
+          <button class="btn primary"
+            onclick="window.openProductInspection(${id}, ${JSON.stringify(p.id)})">
+            🧪 معاينة
+          </button>
+
+          <button class="btn primary"
+            onclick="window.gcOpenProfessionalReport(${id}, ${JSON.stringify(p.id)})">
+            📄 التقرير الاحترافي
+          </button>
+
+          <button class="btn secondary"
+            onclick="gcProductInspectionHistory(${id}, ${JSON.stringify(p.id)})">
+            📋 السجل
+          </button>
+
+          <button class="btn secondary"
+            onclick="gcEditProduct(${id},${p.id})">
+            ✏️ تعديل
+          </button>
+
+          <button class="btn danger"
+            onclick="gcDeleteProduct(${id},${p.id})">
+            حذف
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  html += `
+    </div>
+
+    <div class="panel">
+      <h3>ملخص المخزن</h3>
+      <div class="grid3">
+        <div class="card">
+          <small>عدد المنتجات</small>
+          <b>${w.products.length}</b>
+        </div>
+
+        <div class="card">
+          <small>إجمالي الكمية</small>
+          <b>${w.products.reduce((a,p) => a + Number(p.qty || 0), 0).toLocaleString("ar-DZ")}</b>
+          <span>قنطار</span>
+        </div>
+
+        <div class="card">
+          <small>المخزن</small>
+          <b>${w.name}</b>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn secondary" onclick="closeM()">إغلاق</button>
+  `;
+
+  modal(html);
+}
+
+function gcAddProduct(id) {
+  const w = S.warehouses.find(x => x.id === id);
+  if (!w) return;
+
+  modal(`
+    <h2>إضافة منتج إلى: ${w.name}</h2>
+
+    <div class="grid">
+      <div>
+        <label>اسم المنتج</label>
+        <input id="gcp_name" type="text" placeholder="مثال: قمح صلب">
+      </div>
+
+      <div>
+        <label>الكمية (قنطار)</label>
+        <input id="gcp_qty" type="number" min="0" step="0.01">
+      </div>
+
+      <div>
+        <label>الحالة</label>
+        <select id="gcp_status">
+          <option>مستقر</option>
+          <option>يحتاج متابعة</option>
+          <option>تحت المراقبة</option>
+          <option>غير مطابق</option>
+          <option>خطر</option>
+        </select>
+      </div>
+
+      <div>
+        <label>ملاحظات</label>
+        <input id="gcp_notes" type="text">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" onclick="gcSaveNewProduct(${id})">
+        حفظ المنتج
+      </button>
+
+      <button class="btn secondary" onclick="gcWarehouseProducts(${id})">
+        إلغاء
+      </button>
+    </div>
+  `);
+}
+
+function gcSaveNewProduct(id) {
+  const w = S.warehouses.find(x => x.id === id);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const name = $("gcp_name").value.trim();
+  const qty = Math.max(0, Number($("gcp_qty").value) || 0);
+  const status = $("gcp_status").value;
+  const notes = $("gcp_notes").value.trim();
+
+  if (!name) {
+    return alert("أدخل اسم المنتج");
+  }
+
+  w.products.push({
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    name: name,
+    qty: qty,
+    status: status,
+    addedAt: today(),
+    notes: notes
+  });
+
+  w.history = w.history || [];
+
+  w.history.unshift({
+    date: today(),
+    type: "إضافة منتج",
+    details: "تمت إضافة المنتج: " + name +
+      " — الكمية: " + qty + " قنطار"
+  });
+
+  save();
+  gcWarehouseProducts(id);
+}
+
+function gcEditProduct(warehouseId, productId) {
+  const w = S.warehouses.find(x => x.id === warehouseId);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const p = w.products.find(x => x.id === productId);
+  if (!p) return;
+
+  modal(`
+    <h2>تعديل المنتج: ${p.name}</h2>
+
+    <div class="grid">
+      <div>
+        <label>اسم المنتج</label>
+        <input id="gce_name" value="${p.name || ""}">
+      </div>
+
+      <div>
+        <label>الكمية (قنطار)</label>
+        <input id="gce_qty" type="number" min="0" step="0.01"
+          value="${Number(p.qty || 0)}">
+      </div>
+
+      <div>
+        <label>الحالة</label>
+        <select id="gce_status">
+          <option ${p.status === "مستقر" ? "selected" : ""}>مستقر</option>
+          <option ${p.status === "يحتاج متابعة" ? "selected" : ""}>يحتاج متابعة</option>
+          <option ${p.status === "تحت المراقبة" ? "selected" : ""}>تحت المراقبة</option>
+          <option ${p.status === "غير مطابق" ? "selected" : ""}>غير مطابق</option>
+          <option ${p.status === "خطر" ? "selected" : ""}>خطر</option>
+        </select>
+      </div>
+
+      <div>
+        <label>ملاحظات</label>
+        <input id="gce_notes" value="${p.notes || ""}">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary"
+        onclick="gcSaveProductEdit(${warehouseId},${productId})">
+        حفظ التعديلات
+      </button>
+
+      <button class="btn secondary"
+        onclick="gcWarehouseProducts(${warehouseId})">
+        إلغاء
+      </button>
+    </div>
+  `);
+}
+
+function gcSaveProductEdit(warehouseId, productId) {
+  const w = S.warehouses.find(x => x.id === warehouseId);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const p = w.products.find(x => x.id === productId);
+  if (!p) return;
+
+  const oldName = p.name;
+  const oldQty = Number(p.qty || 0);
+
+  const name = $("gce_name").value.trim();
+  const qty = Math.max(0, Number($("gce_qty").value) || 0);
+  const status = $("gce_status").value;
+  const notes = $("gce_notes").value.trim();
+
+  if (!name) {
+    return alert("أدخل اسم المنتج");
+  }
+
+  p.name = name;
+  p.qty = qty;
+  p.status = status;
+  p.notes = notes;
+  p.updatedAt = today();
+
+  w.history = w.history || [];
+
+  w.history.unshift({
+    date: today(),
+    type: "تعديل منتج",
+    details:
+      "تم تعديل المنتج " + oldName +
+      (oldName !== name ? " → " + name : "") +
+      (oldQty !== qty ? " — الكمية: " + oldQty + " → " + qty : "")
+  });
+
+  save();
+  gcWarehouseProducts(warehouseId);
+}
+
+function gcDeleteProduct(warehouseId, productId) {
+  const w = S.warehouses.find(x => x.id === warehouseId);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const p = w.products.find(x => x.id === productId);
+  if (!p) return;
+
+  if (!confirm("حذف المنتج " + p.name + " من هذا المخزن؟")) {
+    return;
+  }
+
+  w.products = w.products.filter(x => x.id !== productId);
+
+  w.history = w.history || [];
+
+  w.history.unshift({
+    date: today(),
+    type: "حذف منتج",
+    details: "تم حذف المنتج: " + p.name
+  });
+
+  save();
+  gcWarehouseProducts(warehouseId);
+}
+
+function warehouseCard(id) {
+  const w = S.warehouses.find(x => x.id === id);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const ins = S.inspections.filter(i => i.warehouse === w.name);
+
+  const totalProducts = w.products.reduce(
+    (a, p) => a + Number(p.qty || 0), 0
+  );
+
+  modal(`
+    <h2>بطاقة المخزن: ${w.name || "غير محدد"}</h2>
+
+    <div class="panel">
+      <h3>معلومات المخزن</h3>
+
+      <div class="grid">
+        <div>
+          <label>اسم / رقم المخزن</label>
+          <input id="ew_name" type="text" value="${w.name || ""}">
+        </div>
+
+        <div>
+          <label>الموقع</label>
+          <input id="ew_loc" type="text" value="${w.loc || ""}">
+        </div>
+
+        <div>
+          <label>الحالة العامة</label>
+          <select id="ew_status">
+            <option ${w.status === "مستقر" ? "selected" : ""}>مستقر</option>
+            <option ${w.status === "يحتاج متابعة" ? "selected" : ""}>يحتاج متابعة</option>
+            <option ${w.status === "خطر" ? "selected" : ""}>خطر</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary"
+          onclick="saveWarehouseEdit(${id})">
+          حفظ معلومات المخزن
+        </button>
+
+        <button class="btn secondary"
+          onclick="gcWarehouseProducts(${id})">
+          📦 إدارة المنتجات (${w.products.length})
+        </button>
+
+        <button class="btn secondary"
+          onclick="warehouseOperations(${id})">
+          سجل العمليات
+        </button>
+
+        <button class="btn secondary"
+          onclick="warehouseQualityHistory(${id})">
+          📋 سجل مراقبة الجودة
+        </button>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <small>عدد المنتجات</small>
+        <b>${w.products.length}</b>
+      </div>
+
+      <div class="card">
+        <small>إجمالي الكمية</small>
+        <b>${totalProducts.toLocaleString("ar-DZ")}</b>
+        <span>قنطار</span>
+      </div>
+
+      <div class="card">
+        <small>عدد المعاينات</small>
+        <b>${ins.length}</b>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>منتجات المخزن</h3>
+
+        <button class="btn primary"
+          onclick="gcAddProduct(${id})">
+          ➕ إضافة منتج
+        </button>
+      </div>
+
+      <div class="grid3">
+        ${w.products.map(function(p) {
+          const cls = gcProductStatusClass(p.status || "مستقر");
+
+          return `
+            <div class="card">
+              <h3>${p.name || "غير محدد"}</h3>
+
+              <p>
+                <b>${Number(p.qty || 0).toLocaleString("ar-DZ")}</b>
+                قنطار
+              </p>
+
+              <p>
+                <span class="badge ${cls}">
+                  ${p.status || "مستقر"}
+                </span>
+              </p>
+
+              <button class="btn secondary"
+                onclick="gcEditProduct(${id},${p.id})">
+                ✏️ تعديل
+              </button>
+            </div>
+          `;
+        }).join("") || `
+          <div class="card">
+            <p>لا توجد منتجات بعد.</p>
+          </div>
+        `}
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>معلومات إضافية</h3>
+      <p><b>الموقع:</b> ${w.loc || "غير محدد"}</p>
+      <p><b>تاريخ الإنشاء:</b> ${w.createdAt || "غير مسجل"}</p>
+      <p><b>آخر حركة:</b> ${w.lastMovement || "غير مسجلة"}</p>
+    </div>
+
+    <button class="btn secondary" onclick="closeM()">إغلاق</button>
+  `);
+
+  if ($("ew_name")) $("ew_name").value = w.name || "";
+  if ($("ew_loc")) $("ew_loc").value = w.loc || "";
+  if ($("ew_status")) $("ew_status").value = w.status || "مستقر";
+}
+
+function warehouseQualityHistory(id) {
+  const w = S.warehouses.find(x => x.id === id);
+  if (!w) return;
+
+  const all = JSON.parse(
+    localStorage.getItem("gcdz_quality_records") || "[]"
+  );
+
+  const rows = all.filter(x => x.warehouse === w.name);
+
+  let html =
+    "<h2>📋 سجل مراقبة الجودة: " +
+    (w.name || "غير محدد") +
+    "</h2>";
+
+  if (!rows.length) {
+    html +=
+      '<div class="panel"><p>لا توجد معاينات جودة مسجلة لهذا المخزن.</p></div>';
+  } else {
+    html +=
+      '<div class="panel"><table><thead><tr>' +
+      "<th>التاريخ</th>" +
+      "<th>رقم المعاينة</th>" +
+      "<th>المنتج</th>" +
+      "<th>الحرارة</th>" +
+      "<th>الرطوبة</th>" +
+      "<th>الحشرات</th>" +
+      "<th>الشوائب</th>" +
+      "<th>الانحراف</th>" +
+      "<th>المعاين</th>" +
+      "</tr></thead><tbody>";
+
+    rows.forEach(function (x) {
+      html +=
+        "<tr>" +
+        "<td>" + (x.date || "") + "</td>" +
+        "<td>" + (x.number || "") + "</td>" +
+        "<td>" + (x.product || "") + "</td>" +
+        "<td>" + (x.temperature || "") + " °C</td>" +
+        "<td>" + (x.humidity || "") + " %</td>" +
+        "<td>" + (x.pest || "لا توجد") + "</td>" +
+        "<td>" + (x.impurity || "") + "</td>" +
+        "<td>" + (x.deviation ? "نعم" : "لا") + "</td>" +
+        "<td>" + (x.inspector || "") + "</td>" +
+        "</tr>";
+    });
+
+    html += "</tbody></table></div>";
+  }
+
+  html +=
+    '<button class="btn secondary" onclick="closeM()">إغلاق</button>';
+
+  modal(html);
+}function warehouseOperations(id){const w=S.warehouses.find(x=>x.id===id);if(!w)return;const r=S.receives.filter(x=>x.dest===w.name).length;const t=S.transfers.filter(x=>x.from===w.name||x.to===w.name).length;const h=(w.history||[]).length;modal('<h2>سجل عمليات المخزن: '+w.name+'</h2><div class="panel"><p>الاستقبالات: '+r+'</p><p>التحويلات: '+t+'</p><p>التعديلات: '+h+'</p></div><button class="btn secondary" onclick="closeM()">إغلاق</button>')}
+function saveWarehouseEdit(id) {
+  const w = S.warehouses.find(x => x.id === id);
+  if (!w) return;
+
+  const oldName = w.name;
+
+  const name = $("ew_name").value.trim();
+  const loc = $("ew_loc").value.trim();
+  const status = $("ew_status").value;
+
+  if (!name) {
+    return alert("أدخل اسم المخزن");
+  }
+
+  w.name = name;
+  w.loc = loc || "غير محدد";
+  w.status = status;
+
+  if (typeof gcEnsureProducts === "function") {
+    gcEnsureProducts(w);
+  }
+
+  /*
+   * Keep the old fields synchronized for compatibility
+   * with the rest of GrainControl DZ.
+   */
+  if (w.products && w.products.length) {
+    w.product = w.products[0].name || "غير محدد";
+
+    w.qty = w.products.reduce(function(sum, p) {
+      return sum + Number(p.qty || 0);
+    }, 0);
+  } else {
+    w.product = "غير محدد";
+    w.qty = 0;
+  }
+
+  w.history = w.history || [];
+
+  w.history.unshift({
+    date: today(),
+    type: "تعديل معلومات المخزن",
+    details:
+      "تم تعديل بيانات المخزن" +
+      (oldName !== name
+        ? " — الاسم: " + oldName + " → " + name
+        : "")
+  });
+
+  save();
+  closeM();
+  render();
+  go("warehouses");
+}
+function delW(id){if(confirm('حذف المخزن؟')){S.warehouses=S.warehouses.filter(w=>w.id!==id);save();render()}}function viewI(n){let x=S.inspections[n];modal(`<h2>تفاصيل الفحص</h2><p><b>المخزن:</b> ${x.warehouse}</p><p><b>المنتج:</b> ${x.product}</p><p><b>الحرارة:</b> ${x.temp} °C &nbsp; <b>الرطوبة:</b> ${x.hum}%</p><p><b>الحشرات:</b> ${x.pest}</p><p><b>النتيجة:</b> ${x.result}</p><p><b>الملاحظات:</b> ${x.notes||'لا توجد'}</p><button class="btn secondary" onclick="closeM()">إغلاق</button>`)}
+nav();go('home');
+</script>
+<script id="gcSearchJSV11">
+
+function esc(value) { return String(value ?? ''); }
+
+function gcNorm(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\\u0300-\\u036f]/g, "")
+    .trim();
+}
+
+function gcSearch() {
+
+  const input = document.getElementById("gcSearchInput");
+  const box = document.getElementById("gcSearchResults");
+
+  if (!input || !box) return;
+
+  const query = gcNorm(input.value);
+
+  if (!query) {
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+
+  const data = [];
+
+  S.warehouses.forEach(function(w) {
+    data.push({
+      type: "مخزن",
+      title: w.name,
+      body: [
+        w.product,
+        w.loc,
+        w.status,
+        (w.qty || 0) + " قنطار"
+      ].join(" | "),
+      action: function() {
+        warehouseCard(w.id);
+      }
+    });
+  });
+
+  S.receives.forEach(function(x) {
+    data.push({
+      type: "استقبال",
+      title: x.product || "منتج",
+      body: [
+        x.date,
+        (x.qty || 0) + " قنطار",
+        x.dest,
+        x.source
+      ].join(" | ")
+    });
+  });
+
+  S.transfers.forEach(function(x) {
+    data.push({
+      type: "تحويل",
+      title: x.product || "منتج",
+      body: [
+        x.date,
+        (x.qty || 0) + " قنطار",
+        x.from,
+        x.to
+      ].join(" | ")
+    });
+  });
+
+  S.inspections.forEach(function(x, index) {
+    data.push({
+      type: "جودة",
+      title: x.warehouse,
+      body: [
+        x.date,
+        x.product,
+        x.temp + " °C",
+        x.hum + " %",
+        x.pest,
+        x.result
+      ].join(" | "),
+      action: function() {
+        viewI(index);
+      }
+    });
+  });
+
+  S.people.forEach(function(p) {
+    data.push({
+      type: "شخص",
+      title: p.name,
+      body: p.email
+    });
+  });
+
+  S.messages.forEach(function(m) {
+    data.push({
+      type: "رسالة",
+      title: m.date,
+      body: m.text
+    });
+  });
+
+  const results = data
+    .filter(function(item) {
+      return gcNorm(
+        item.type + " " +
+        item.title + " " +
+        item.body
+      ).includes(query);
+    })
+    .slice(0, 30);
+
+  box.style.display = "block";
+
+  if (!results.length) {
+    box.innerHTML =
+      '<div class="gc-search-empty">لا توجد نتائج مطابقة.</div>';
+    return;
+  }
+
+  box.innerHTML = results.map(function(item, index) {
+    return (
+      '<div class="gc-search-result" data-index="' + index + '">' +
+        '<span class="gc-search-tag">' + item.type + '</span>' +
+        '<b>' + item.title + '</b>' +
+        '<div class="small">' + item.body + '</div>' +
+      '</div>'
+    );
+  }).join("");
+
+  box.querySelectorAll(".gc-search-result").forEach(function(element, index) {
+
+    if (results[index].action) {
+      element.onclick = results[index].action;
+    }
+
+  });
+}
+
+function clearGCSearch() {
+
+  const input = document.getElementById("gcSearchInput");
+
+  if (input) {
+    input.value = "";
+  }
+
+  gcSearch();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  const input = document.getElementById("gcSearchInput");
+
+  if (input) {
+    input.addEventListener("input", gcSearch);
+  }
+
+});
+
+</script>
+<script src="quality-ui.js"></script>
+
+<script id="GCZ_QUALITY_CARD_STEP5">
+
+function gcQualityResultClass(result) {
+  if (result === "غير مطابق") return "bad";
+  if (result === "متابعة") return "warn";
+  return "ok";
+}
+
+function gcQualityResultLabel(result) {
+  return result || "مستقر";
+}
+
+function gcShowQualityCard(warehouseId, productId) {
+
+  const w = S.warehouses.find(function(x) {
+    return x.id == warehouseId;
+  });
+
+  if (!w) return;
+
+  if (typeof gcEnsureProducts === "function") {
+    gcEnsureProducts(w);
+  }
+
+  const p = (w.products || []).find(function(x) {
+    return String(x.id) === String(productId);
+  });
+
+  if (!p) {
+    alert("المنتج غير موجود");
+    return;
+  }
+
+  const inspections = Array.isArray(p.inspections)
+    ? p.inspections
+    : [];
+
+  const last = inspections.length
+    ? inspections[0]
+    : null;
+
+  const result = last && last.result
+    ? last.result
+    : (p.status || "مستقر");
+
+  const resultClass = gcQualityResultClass(result);
+
+  modal(`
+    <h2>🌾 بطاقة جودة المنتج</h2>
+
+    <div class="panel">
+
+      <div class="grid">
+
+        <div>
+          <small>المنتج</small>
+          <h3>${p.name || "غير محدد"}</h3>
+        </div>
+
+        <div>
+          <small>المخزن</small>
+          <h3>${w.name || "غير محدد"}</h3>
+        </div>
+
+        <div>
+          <small>الكمية</small>
+          <h3>
+            ${Number(p.qty || 0).toLocaleString("ar-DZ")}
+            قنطار
+          </h3>
+        </div>
+
+        <div>
+          <small>الحالة الحالية</small>
+          <h3>
+            <span class="badge ${resultClass}">
+              ${gcQualityResultLabel(result)}
+            </span>
+          </h3>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <h3>🔬 آخر معاينة</h3>
+
+      ${
+        last
+        ? `
+          <div class="grid">
+
+            <div>
+              <small>التاريخ</small>
+              <p><b>${last.date || "غير مسجل"}</b></p>
+            </div>
+
+            <div>
+              <small>الحرارة</small>
+              <p><b>${last.temp ?? "غير مسجل"} °C</b></p>
+            </div>
+
+            <div>
+              <small>الرطوبة</small>
+              <p><b>${last.hum ?? "غير مسجل"} %</b></p>
+            </div>
+
+            <div>
+              <small>الآفات</small>
+              <p><b>${last.pest || "لا توجد"}</b></p>
+            </div>
+
+          </div>
+
+          <div class="notice ${resultClass === "bad"
+            ? "redbg"
+            : resultClass === "warn"
+              ? "orange"
+              : "blue"}">
+
+            <b>النتيجة:</b>
+            ${gcQualityResultLabel(last.result)}
+
+          </div>
+
+          <p>
+            <b>الملاحظات:</b>
+            ${last.notes || "لا توجد ملاحظات"}
+          </p>
+        `
+        : `
+          <div class="notice blue">
+            لا توجد معاينات مسجلة لهذا المنتج بعد.
+          </div>
+        `
+      }
+
+    </div>
+
+    <div class="panel">
+
+      <h3>📊 ملخص المراقبة</h3>
+
+      <div class="grid3">
+
+        <div class="card">
+          <small>عدد المعاينات</small>
+          <b>${inspections.length}</b>
+        </div>
+
+        <div class="card">
+          <small>آخر معاينة</small>
+          <b style="font-size:16px">
+            ${last ? last.date : "لا توجد"}
+          </b>
+        </div>
+
+        <div class="card">
+          <small>الحالة</small>
+          <b style="font-size:16px">
+            <span class="badge ${resultClass}">
+              ${gcQualityResultLabel(result)}
+            </span>
+          </b>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn primary"
+        onclick="openProductInspection(${warehouseId}, ${JSON.stringify(productId)})">
+        🧪 معاينة جديدة
+      </button>
+
+      <!-- GCZ_STEP8_REPORT_BUTTON -->
+      
+      <button
+        class="btn secondary"
+        onclick="gcProductInspectionHistory(\${warehouseId}, \${JSON.stringify(productId)})">
+        📋 السجل
+      </button>
+
+      <button
+        class="btn primary"
+        onclick="window.gcOpenProfessionalReport(\${warehouseId}, \${JSON.stringify(productId)})">
+        📄 التقرير الاحترافي
+      </button>
+
+      <button
+        class="btn secondary"
+        onclick="closeM()">
+        إغلاق
+      </button>
+
+    </div>
+  `);
+}
+
+window.gcShowQualityCard = gcShowQualityCard;
+
+</script>
+<script id="gcProductInspectionCardV3">
+
+function gcEnsureProducts(w) {
+  if (!w.products || !Array.isArray(w.products)) {
+    w.products = [];
+  }
+
+  if (!w.products.length && w.product) {
+    w.products.push({
+      id: Date.now(),
+      name: w.product || "غير محدد",
+      qty: Number(w.qty || 0),
+      status: w.status || "مستقر",
+      createdAt: today(),
+      lastInspection: null,
+      inspections: []
+    });
+  }
+
+  w.products.forEach(function(p) {
+    if (!p.id) p.id = Date.now() + Math.random();
+    if (!p.name) p.name = "غير محدد";
+    if (p.qty == null) p.qty = 0;
+    if (!p.status) p.status = "مستقر";
+    if (!Array.isArray(p.inspections)) p.inspections = [];
+  });
+}
+
+function openProductInspection(warehouseId, productId) {
+  const w = S.warehouses.find(function(x) {
+    return x.id === warehouseId;
+  });
+
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const p = w.products.find(function(x) {
+    return String(x.id) === String(productId);
+  });
+
+  if (!p) {
+    return alert("المنتج غير موجود");
+  }
+
+  const html = `
+    <h2>🧪 معاينة جودة المنتج</h2>
+
+    <div class="panel">
+      <div class="grid3">
+        <div class="card">
+          <small>المخزن</small>
+          <b>${w.name}</b>
+        </div>
+
+        <div class="card">
+          <small>المنتج</small>
+          <b>${p.name}</b>
+        </div>
+
+        <div class="card">
+          <small>الكمية</small>
+          <b>${Number(p.qty || 0).toLocaleString("ar-DZ")}</b>
+          <span>قنطار</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label>درجة الحرارة °C</label>
+        <input id="gpi_temp" type="number" step="0.1">
+      </div>
+
+      <div>
+        <label>الرطوبة %</label>
+        <input id="gpi_hum" type="number" step="0.1">
+      </div>
+
+      <div>
+        <label>الحشرات</label>
+        <select id="gpi_pest">
+          <option>لا توجد</option>
+          <option>خنافس</option>
+          <option>Trogoderma</option>
+          <option>يرقات</option>
+          <option>أخرى</option>
+        </select>
+      </div>
+    </div>
+
+    <h3>ورقة المعاينة</h3>
+
+    <div class="checkrow">
+      نظافة المخزن
+      <input id="gpi_c1" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      حالة الأكياس جيدة
+      <input id="gpi_c2" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      عدم وجود تسرب مياه
+      <input id="gpi_c3" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      عدم وجود روائح غير طبيعية
+      <input id="gpi_c4" type="checkbox" checked>
+    </div>
+
+    <div class="checkrow">
+      عدم وجود شوائب غير مقبولة
+      <input id="gpi_c5" type="checkbox" checked>
+    </div>
+
+    <label>ملاحظات</label>
+    <textarea id="gpi_notes"></textarea>
+
+    <div class="actions">
+      <button class="btn primary"
+        onclick="saveProductInspection(${warehouseId}, ${JSON.stringify(productId)})">
+        💾 حفظ المعاينة
+      </button>
+
+      <button class="btn secondary" onclick="closeM()">
+        إلغاء
+      </button>
+    </div>
+  `;
+
+  modal(html);
+}
+
+function saveProductInspection(warehouseId, productId) {
+  const w = S.warehouses.find(function(x) {
+    return x.id === warehouseId;
+  });
+
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const p = w.products.find(function(x) {
+    return String(x.id) === String(productId);
+  });
+
+  if (!p) return alert("المنتج غير موجود");
+
+  const temp = Number(document.getElementById("gpi_temp").value || 0);
+  const hum = Number(document.getElementById("gpi_hum").value || 0);
+  const pest = document.getElementById("gpi_pest").value;
+
+  const issues = [];
+
+  if (pest !== "لا توجد") issues.push("حشرات");
+  if (temp > 35) issues.push("حرارة مرتفعة");
+  if (!document.getElementById("gpi_c1").checked) issues.push("نظافة");
+  if (!document.getElementById("gpi_c2").checked) issues.push("الأكياس");
+  if (!document.getElementById("gpi_c3").checked) issues.push("تسرب مياه");
+  if (!document.getElementById("gpi_c4").checked) issues.push("رائحة");
+  if (!document.getElementById("gpi_c5").checked) issues.push("شوائب");
+
+  const result = issues.length ? "متابعة" : "مستقر";
+  const date = today();
+
+  const record = {
+    id: Date.now(),
+    date: date,
+    warehouse: w.name,
+    warehouseId: w.id,
+    product: p.name,
+    productId: p.id,
+    temp: temp,
+    hum: hum,
+    pest: pest,
+    result: result,
+    issues: issues,
+    notes: document.getElementById("gpi_notes").value || ""
+  };
+
+  p.inspections = p.inspections || [];
+  p.inspections.unshift(record);
+  p.lastInspection = date;
+  p.status = result;
+
+  S.inspections.unshift(record);
+
+  if (result === "متابعة") {
+    w.status = "يحتاج متابعة";
+  }
+
+  w.lastMovement = date;
+
+  w.history = w.history || [];
+  w.history.unshift({
+    date: date,
+    type: "معاينة جودة منتج",
+    details:
+      "معاينة المنتج: " +
+      p.name +
+      " — النتيجة: " +
+      result
+  });
+
+  save();
+  closeM();
+  render();
+  go("warehouses");
+}
+
+
+window.openProductInspection = openProductInspection;
+window.saveProductInspection = saveProductInspection;
+</script>
+
+<script id="gcProductButtonsV4">
+
+function gcProductInspectionHistory(warehouseId, productId) {
+  const w = S.warehouses.find(x => x.id === warehouseId);
+  if (!w) return;
+
+  gcEnsureProducts(w);
+
+  const p = w.products.find(x => String(x.id) === String(productId));
+  if (!p) return;
+
+  const rows = (p.inspections || []).map(function(i) {
+    return `
+      <tr>
+        <td>${i.date || ""}</td>
+        <td>${i.temp ?? ""} °C</td>
+        <td>${i.hum ?? ""} %</td>
+        <td>${i.pest || "لا توجد"}</td>
+        <td>
+          <span class="badge ${i.result === "متابعة" ? "warn" : "ok"}">
+            ${i.result || "مستقر"}
+          </span>
+        </td>
+        <td>${i.notes || "لا توجد"}</td>
+      </tr>
+    `;
+  }).join("");
+
+  modal(`
+    <h2>📋 سجل معاينات المنتج</h2>
+
+    <div class="panel">
+      <h3>${p.name}</h3>
+      <p><b>المخزن:</b> ${w.name}</p>
+      <p>
+        <b>الكمية:</b>
+        ${Number(p.qty || 0).toLocaleString("ar-DZ")}
+        قنطار
+      </p>
+      <p>
+        <b>الحالة الحالية:</b>
+        <span class="badge ${p.status === "متابعة" ? "warn" : "ok"}">
+          ${p.status || "مستقر"}
+        </span>
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>المعاينات السابقة</h3>
+
+      ${rows
+        ? `
+          <div style="overflow:auto">
+            <table>
+              <thead>
+                <tr>
+                  <th>التاريخ</th>
+                  <th>الحرارة</th>
+                  <th>الرطوبة</th>
+                  <th>الحشرات</th>
+                  <th>النتيجة</th>
+                  <th>الملاحظات</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        `
+        : '<div class="notice blue">لا توجد معاينات لهذا المنتج بعد.</div>'
+      }
+    </div>
+
+    <div class="actions">
+      <button
+        class="btn primary"
+        onclick="openProductInspection(${warehouseId}, ${JSON.stringify(productId)})">
+        🧪 معاينة جديدة
+      </button>
+
+      <button
+        class="btn secondary"
+        onclick="closeM()">
+        إغلاق
+      </button>
+    </div>
+  `);
+}
+
+
+function gcProductsPanel(w) {
+  gcEnsureProducts(w);
+
+  if (!w.products.length) {
+    return `
+      <div class="notice blue">
+        لا توجد منتجات مسجلة في هذا المخزن.
+      </div>
+    `;
+  }
+
+  return `
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <h3>📦 منتجات المخزن</h3>
+        <span class="badge ok">
+          ${w.products.length} منتج
+        </span>
+      </div>
+
+      <div class="grid3">
+        ${w.products.map(function(p) {
+          const last = p.inspections && p.inspections.length
+            ? p.inspections[0]
+            : null;
+
+          const status = p.status || "مستقر";
+          const statusClass = status === "متابعة" || status === "خطر"
+            ? "warn"
+            : "ok";
+
+          return `
+            <div class="card">
+              <small>المنتج</small>
+              <b>${p.name || "غير محدد"}</b>
+
+              <p>
+                <small>الكمية</small><br>
+                <strong>
+                  ${Number(p.qty || 0).toLocaleString("ar-DZ")}
+                </strong>
+                قنطار
+              </p>
+
+              <p>
+                <small>الحالة</small><br>
+                <span class="badge ${statusClass}">
+                  ${status}
+                </span>
+              </p>
+
+              <p>
+                <small>آخر معاينة</small><br>
+                ${last ? last.date : "لا توجد"}
+              </p>
+
+              <div class="actions">
+                <button
+                  class="btn primary"
+                  onclick="openProductInspection(${w.id}, ${JSON.stringify(p.id)})">
+                  🧪 معاينة
+                </button>
+
+                <button
+                  class="btn primary"
+                  onclick="window.gcOpenProfessionalReport(${w.id}, ${JSON.stringify(p.id)})">
+                  📄 التقرير الاحترافي
+                </button>
+
+                <button
+                  class="btn secondary"
+                  onclick="gcProductInspectionHistory(${w.id}, ${JSON.stringify(p.id)})">
+                  📋 السجل
+                </button>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+</script>
+
+
+<script id="GCZ_PRO_REPORTS_STEP8">
+
+function gcEscapeReport(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function gcReportResultClass(result) {
+  if (result === "غير مطابق") return "bad";
+  if (result === "متابعة") return "warn";
+  return "ok";
+}
+
+function gcOpenProfessionalReport(warehouseId, productId) {
+
+  const w = S.warehouses.find(function(x) {
+    return x.id == warehouseId;
+  });
+
+  if (!w) {
+    alert("المخزن غير موجود");
+    return;
+  }
+
+  if (typeof gcEnsureProducts === "function") {
+    gcEnsureProducts(w);
+  }
+
+  const p = (w.products || []).find(function(x) {
+    return String(x.id) === String(productId);
+  });
+
+  if (!p) {
+    alert("المنتج غير موجود");
+    return;
+  }
+
+  const inspections = Array.isArray(p.inspections)
+    ? p.inspections
+    : [];
+
+  const last = inspections.length ? inspections[0] : null;
+
+  const result = last && last.result
+    ? last.result
+    : (p.status || "مستقر");
+
+  const followups = inspections.filter(function(i) {
+    return i.result === "متابعة";
+  }).length;
+
+  const nonCompliant = inspections.filter(function(i) {
+    return i.result === "غير مطابق";
+  }).length;
+
+  const pests = inspections.filter(function(i) {
+    return i.pest &&
+      i.pest !== "لا توجد" &&
+      i.pest.trim() !== "";
+  }).length;
+
+  const highTemp = inspections.filter(function(i) {
+    return Number(i.temp) >= 35;
+  }).length;
+
+  const highHum = inspections.filter(function(i) {
+    return Number(i.hum) >= 14;
+  }).length;
+
+  const resultClass = gcReportResultClass(result);
+
+  const rows = inspections.slice(0, 20).map(function(i) {
+    return `
+      <tr>
+        <td>${gcEscapeReport(i.date || "-")}</td>
+        <td>${gcEscapeReport(i.temp ?? "-")} °C</td>
+        <td>${gcEscapeReport(i.hum ?? "-")} %</td>
+        <td>${gcEscapeReport(i.pest || "لا توجد")}</td>
+        <td>
+          <span class="badge ${gcReportResultClass(i.result)}">
+            ${gcEscapeReport(i.result || "مستقر")}
+          </span>
+        </td>
+        <td>${gcEscapeReport(i.notes || "-")}</td>
+      </tr>
+    `;
+  }).join("");
+
+  modal(`
+    <div class="gc-report-document">
+
+      <div class="panel">
+
+        <div class="toolbar">
+          <div>
+            <h2>📄 تقرير جودة احترافي</h2>
+            <div class="muted">GrainControl DZ</div>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary"
+              onclick="gcPrintProfessionalReport()">
+              🖨️ طباعة / PDF
+            </button>
+
+            <button class="btn secondary"
+              onclick="closeM()">
+              إغلاق
+            </button>
+          </div>
+        </div>
+
+        <div class="notice blue">
+          <b>تاريخ التقرير:</b> ${today()}
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h3>🌾 بيانات المنتج</h3>
+
+        <div class="grid">
+
+          <div>
+            <small>المخزن</small>
+            <h3>${gcEscapeReport(w.name || "غير محدد")}</h3>
+          </div>
+
+          <div>
+            <small>المنتج</small>
+            <h3>${gcEscapeReport(p.name || "غير محدد")}</h3>
+          </div>
+
+          <div>
+            <small>الكمية</small>
+            <h3>
+              ${Number(p.qty || 0).toLocaleString("ar-DZ")}
+              قنطار
+            </h3>
+          </div>
+
+          <div>
+            <small>الحالة الحالية</small>
+            <h3>
+              <span class="badge ${resultClass}">
+                ${gcEscapeReport(result)}
+              </span>
+            </h3>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h3>📊 مؤشرات الجودة</h3>
+
+        <div class="grid3">
+
+          <div class="card">
+            <small>إجمالي المعاينات</small>
+            <b>${inspections.length}</b>
+          </div>
+
+          <div class="card">
+            <small>حالات المتابعة</small>
+            <b>${followups}</b>
+          </div>
+
+          <div class="card">
+            <small>حالات غير مطابقة</small>
+            <b>${nonCompliant}</b>
+          </div>
+
+          <div class="card">
+            <small>سجلات آفات</small>
+            <b>${pests}</b>
+          </div>
+
+          <div class="card">
+            <small>قراءات حرارة مرتفعة</small>
+            <b>${highTemp}</b>
+          </div>
+
+          <div class="card">
+            <small>قراءات رطوبة مرتفعة</small>
+            <b>${highHum}</b>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h3>🧪 آخر معاينة</h3>
+
+        ${
+          last
+          ? `
+            <div class="grid">
+
+              <div>
+                <small>التاريخ</small>
+                <p><b>${gcEscapeReport(last.date || "-")}</b></p>
+              </div>
+
+              <div>
+                <small>الحرارة</small>
+                <p><b>${gcEscapeReport(last.temp ?? "-")} °C</b></p>
+              </div>
+
+              <div>
+                <small>الرطوبة</small>
+                <p><b>${gcEscapeReport(last.hum ?? "-")} %</b></p>
+              </div>
+
+              <div>
+                <small>الآفات</small>
+                <p><b>${gcEscapeReport(last.pest || "لا توجد")}</b></p>
+              </div>
+
+            </div>
+
+            <div class="notice ${resultClass === "bad"
+              ? "redbg"
+              : resultClass === "warn"
+                ? "orange"
+                : "blue"}">
+
+              <b>النتيجة:</b>
+              ${gcEscapeReport(last.result || "مستقر")}
+
+            </div>
+
+            <p>
+              <b>الملاحظات:</b>
+              ${gcEscapeReport(last.notes || "لا توجد ملاحظات")}
+            </p>
+          `
+          : `
+            <div class="notice blue">
+              لا توجد معاينات مسجلة لهذا المنتج.
+            </div>
+          `
+        }
+
+      </div>
+
+      <div class="panel">
+
+        <h3>📋 سجل المعاينات</h3>
+
+        ${
+          rows
+          ? `
+            <div style="overflow:auto">
+              <table>
+                <thead>
+                  <tr>
+                    <th>التاريخ</th>
+                    <th>الحرارة</th>
+                    <th>الرطوبة</th>
+                    <th>الآفات</th>
+                    <th>النتيجة</th>
+                    <th>الملاحظات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rows}
+                </tbody>
+              </table>
+            </div>
+          `
+          : `
+            <div class="notice blue">
+              لا يوجد سجل معاينات بعد.
+            </div>
+          `
+        }
+
+      </div>
+
+      <div class="panel">
+
+        <h3>📝 خلاصة مراقبة الجودة</h3>
+
+        <p>
+          تم إنشاء هذا التقرير آليًا اعتمادًا على بيانات المنتج
+          وسجل معاينات الجودة المسجلة داخل GrainControl DZ.
+        </p>
+
+        <p>
+          <b>الحالة النهائية:</b>
+          <span class="badge ${resultClass}">
+            ${gcEscapeReport(result)}
+          </span>
+        </p>
+
+        <p class="muted">
+          التقرير للاستخدام الإداري والرقابي الداخلي.
+        </p>
+
+      </div>
+
+    </div>
+  `);
+}
+
+function gcPrintProfessionalReport() {
+
+  const box = document.querySelector(".gc-report-document");
+
+  if (!box) {
+    alert("لا يوجد تقرير للطباعة");
+    return;
+  }
+
+  const oldTitle = document.title;
+
+  document.title = "GrainControl DZ - تقرير جودة";
+
+  const printWindow = window.open("", "_blank");
+
+  if (!printWindow) {
+    alert("تعذر فتح نافذة الطباعة");
+    return;
+  }
+
+  printWindow.document.write(`
+    <!doctype html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="utf-8">
+      <title>GrainControl DZ - تقرير جودة</title>
+      <style>
+        body {
+          font-family: Tahoma, Arial, sans-serif;
+          color: #173322;
+          padding: 25px;
+          line-height: 1.7;
+        }
+
+        h1,h2,h3 {
+          margin-top: 0;
+        }
+
+        .panel {
+          border: 1px solid #ddd;
+          border-radius: 12px;
+          padding: 16px;
+          margin-bottom: 14px;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+
+        .grid3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+
+        .card {
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          padding: 12px;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        th,td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: right;
+        }
+
+        th {
+          background: #f0f6f2;
+        }
+
+        .badge {
+          padding: 4px 8px;
+          border-radius: 999px;
+          font-weight: bold;
+        }
+
+        .ok {
+          background: #e4f6ea;
+        }
+
+        .warn {
+          background: #fff1d9;
+        }
+
+        .bad {
+          background: #ffe4e4;
+        }
+
+        .toolbar,
+        button {
+          display: none !important;
+        }
+
+        @media print {
+          body {
+            padding: 10px;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      ${box.innerHTML}
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+
+  setTimeout(function() {
+    printWindow.focus();
+    printWindow.print();
+  }, 300);
+
+  document.title = oldTitle;
+}
+
+window.gcOpenProfessionalReport = gcOpenProfessionalReport;
+window.gcPrintProfessionalReport = gcPrintProfessionalReport;
+
+</script>
+<script id="GCZ_SMART_ALERTS_STEP6">
+
+function gcRenderSmartAlerts() {
+  const box = document.getElementById("alertsBox");
+  if (!box) return;
+
+  const alerts = [];
+
+  (S.warehouses || []).forEach(function(w) {
+
+    if (typeof gcEnsureProducts === "function") {
+      gcEnsureProducts(w);
+    }
+
+    (w.products || []).forEach(function(p) {
+
+      const inspections = Array.isArray(p.inspections)
+        ? p.inspections
+        : [];
+
+      const last = inspections.length ? inspections[0] : null;
+
+      if (!last) {
+        alerts.push({
+          level: "warn",
+          title: "منتج بدون معاينة",
+          text: (p.name || "منتج غير محدد") +
+                " في " +
+                (w.name || "مخزن غير محدد") +
+                " لم تتم معاينته بعد.",
+          warehouseId: w.id,
+          productId: p.id
+        });
+        return;
+      }
+
+      if (last.result === "غير مطابق") {
+        alerts.push({
+          level: "bad",
+          title: "منتج غير مطابق",
+          text: (p.name || "منتج غير محدد") +
+                " في " +
+                (w.name || "مخزن غير محدد") +
+                " يحتاج إلى إجراء.",
+          warehouseId: w.id,
+          productId: p.id
+        });
+      }
+
+      if (last.result === "متابعة") {
+        alerts.push({
+          level: "warn",
+          title: "منتج يحتاج متابعة",
+          text: (p.name || "منتج غير محدد") +
+                " في " +
+                (w.name || "مخزن غير محدد"),
+          warehouseId: w.id,
+          productId: p.id
+        });
+      }
+
+      if (last.pest &&
+          last.pest !== "لا توجد" &&
+          last.pest.trim() !== "") {
+
+        alerts.push({
+          level: "bad",
+          title: "آفات مسجلة",
+          text: (p.name || "منتج غير محدد") +
+                " في " +
+                (w.name || "مخزن غير محدد") +
+                ": " +
+                last.pest,
+          warehouseId: w.id,
+          productId: p.id
+        });
+      }
+
+      if (Number(last.temp) >= 35) {
+        alerts.push({
+          level: "warn",
+          title: "حرارة مرتفعة",
+          text: (p.name || "منتج غير محدد") +
+                " — آخر قراءة: " +
+                last.temp +
+                " °C",
+          warehouseId: w.id,
+          productId: p.id
+        });
+      }
+
+      if (Number(last.hum) >= 14) {
+        alerts.push({
+          level: "warn",
+          title: "رطوبة مرتفعة",
+          text: (p.name || "منتج غير محدد") +
+                " — آخر قراءة: " +
+                last.hum +
+                " %",
+          warehouseId: w.id,
+          productId: p.id
+        });
+      }
+    });
+  });
+
+  if (!alerts.length) {
+    box.innerHTML =
+      '<div class="notice blue">' +
+      '✅ لا توجد تنبيهات جودة حالية.' +
+      '</div>';
+    return;
+  }
+
+  box.innerHTML = alerts.map(function(a) {
+
+    const bg =
+      a.level === "bad"
+        ? "redbg"
+        : "orange";
+
+    return `
+      <div class="notice ${bg}">
+        <b>${a.title}</b>
+        <p>${a.text}</p>
+
+        <button
+          class="btn secondary"
+          onclick="window.gcShowQualityCard(
+            ${a.warehouseId},
+            ${JSON.stringify(a.productId)}
+          )">
+          📦 فتح بطاقة المنتج
+        </button>
+      </div>
+    `;
+
+  }).join("");
+}
+
+window.gcRenderSmartAlerts = gcRenderSmartAlerts;
+
+</script><script src=permissions.js></script><script src=warehouse-isolation.js></script><script src="upgrade-storage-units-v1.js"></script><script src="storage-ui-panel-v1.js"></script></body></html>
+
+
+
+
+
+

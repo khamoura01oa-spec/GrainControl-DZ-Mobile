@@ -659,16 +659,20 @@ textarea{
 @media(max-width:520px){
 
   body::after{
-    background:
-      linear-gradient(rgba(245,249,247,.90),rgba(237,243,240,.94)),
-      url("assets/grain-warehouse-bg.jpg");
-    background-position:center;
-  }
+  background:
+    linear-gradient(rgba(245,249,247,.30),rgba(237,243,240,.42)),
+    url("assets/grain-warehouse-bg.jpg");
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  filter:saturate(.95) contrast(1.05);
+}
 
   body::before{
     background:
-      radial-gradient(circle at 15% 7%,rgba(15,138,90,.08),transparent 34%),
-      linear-gradient(145deg,rgba(255,255,255,.22),rgba(225,235,230,.18));
+  radial-gradient(circle at 15% 7%,rgba(15,138,90,.06),transparent 34%),
+  linear-gradient(145deg,rgba(255,255,255,.06),rgba(225,235,230,.08));
+    }
   }
 
   header .danger{

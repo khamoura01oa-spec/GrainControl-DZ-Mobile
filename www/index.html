@@ -45,7 +45,164 @@
   margin-left:6px;
 }
 </style>
-</style></head><body><header><button class="btn danger" onclick="gcLogout()">تسجيل الخروج</button><div><div class="logo">🌾 GrainControl DZ</div><div class="sub">نظام إدارة ومراقبة جودة الحبوب</div></div><div>👤 أسامة بلعيدي</div></header><main class="wrap"><nav class="nav" id="nav"></nav>
+</style>
+   <style id="mobile-design">
+@media(max-width:520px){
+
+  body{
+    background:#eef4f0;
+    overflow-x:hidden;
+  }
+
+  body::after{
+    background:
+      linear-gradient(rgba(238,244,240,.35),rgba(238,244,240,.48)),
+      url("assets/grain-warehouse-bg.jpg");
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    filter:saturate(.95) contrast(1.05);
+  }
+
+  body::before{
+    background:
+      linear-gradient(145deg,rgba(255,255,255,.05),rgba(225,235,230,.06));
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:12px 10px;
+    margin:0;
+    border-radius:0 0 18px 18px;
+    background:rgba(255,255,255,.94);
+    box-shadow:0 3px 14px rgba(23,51,34,.12);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+
+  header > div:last-child{
+    font-size:11px;
+    white-space:nowrap;
+  }
+
+  header .btn{
+    padding:8px 10px;
+    font-size:11px;
+  }
+
+  .logo{
+    font-size:17px !important;
+    font-weight:800;
+  }
+
+  .sub{
+    font-size:9px;
+    margin-top:2px;
+  }
+
+  .wrap{
+    padding:10px !important;
+    width:auto;
+  }
+
+  .nav{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:7px;
+    margin:12px 0;
+  }
+
+  .nav button,
+  .btn{
+    min-height:44px;
+    padding:10px 8px;
+    border-radius:12px;
+    font-size:12px;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:9px;
+  }
+
+  .card{
+    padding:13px 11px;
+    min-height:82px;
+    border-radius:14px;
+  }
+
+  .card b{
+    font-size:22px;
+    margin-top:5px;
+  }
+
+  .kpi{
+    font-size:11px;
+  }
+
+  .grid,
+  .grid3{
+    grid-template-columns:1fr !important;
+    gap:10px;
+  }
+
+  .panel{
+    padding:13px;
+    border-radius:14px;
+  }
+
+  .toolbar{
+    gap:8px;
+  }
+
+  input,
+  select,
+  textarea{
+    font-size:14px;
+    padding:12px;
+    border-radius:11px;
+  }
+
+  table{
+    font-size:12px;
+  }
+
+  th,
+  td{
+    padding:8px 6px;
+  }
+
+  .actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+
+  .modal{
+    padding:8px;
+  }
+
+  .modalbox{
+    width:100%;
+    max-height:94vh;
+    border-radius:16px;
+    padding:14px;
+  }
+
+  .chat{
+    height:55vh;
+  }
+}
+</style>
+ </head><body><header><button class="btn danger" onclick="gcLogout()">تسجيل الخروج</button><div><div class="logo">🌾 GrainControl DZ</div><div class="sub">نظام إدارة ومراقبة جودة الحبوب</div></div><div>👤 أسامة بلعيدي</div></header><main class="wrap"><nav class="nav" id="nav"></nav>
 <div class="gc-search" id="gcSearchV11">
   <div class="gc-search-row">
     <input
